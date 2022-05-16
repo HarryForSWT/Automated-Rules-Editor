@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rule-list.component.scss']
 })
 export class RuleListComponent implements OnInit {
-
+  rules= [1,2,3];
   constructor() { }
 
   ngOnInit(): void {

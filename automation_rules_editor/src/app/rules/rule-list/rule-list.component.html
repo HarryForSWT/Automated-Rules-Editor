@@ -1,3 +1,6 @@
-<app-rule-item></app-rule-item>
-<app-rule-item></app-rule-item>
-<app-rule-item></app-rule-item>
+<app-rule-item 
+*ngFor="let rule of rules" 
+[ruleIndex]="rules.indexOf(rule)+1"
+></app-rule-item>
+
+
