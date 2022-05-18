@@ -8,6 +8,8 @@ import { RuleListComponent } from './rules/rule-list/rule-list.component';
 import { RuleItemComponent } from './rules/rule-list/rule-item/rule-item.component';
 import { RuleEditComponent } from './rules/rule-edit/rule-edit.component';
 import { NavTreeComponent } from './nav-tree/nav-tree.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NavTreeComponent } from './nav-tree/nav-tree.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

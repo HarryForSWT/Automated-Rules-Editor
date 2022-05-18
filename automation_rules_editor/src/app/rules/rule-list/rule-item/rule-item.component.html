@@ -1,5 +1,5 @@
 <div class="row" [ngStyle]="{backgroundColor: ruleIndex%2===0 ? 'rgb(212, 212, 212)':'rgb(150, 150, 150)'}">
-    <div class="col-xs-9">
+    <div class="col-xs-10">
         <p><strong> Rule number {{ruleIndex}}</strong></p>
         <p>If $item_price equals 1000 and checkbox_a is checked or $item_price is less then 800 and checkbox_b is checked then set $item_price to 1200</p>
         <div class="col-xs-8" *ngIf="details">

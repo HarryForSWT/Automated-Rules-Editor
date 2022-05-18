@@ -1,23 +1,25 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-9">
-            <div id="search">
-                <span class="glyphicon glyphicon-search"></span>
-                <input type="text" id="name" class="form-control" placeholder="Search" [(ngModel)]="ruleNameInput">
-            </div>
-            <button class="btn btn-Default" id="create">+ create rule</button>
-            <div class="btn-group">
-                <button type="button" class="btn btn-Default dropdown-toggle">sorted by:{{sortVariable}} <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="">last edited</a></li>
-                    <li><a href="">name: alphabetically</a></li>
-                </ul>
-            </div>
+        
+            
+        <span class="glyphicon glyphicon-search"></span>
+        <input type="text" id="name" class="form-control col-2" placeholder="Search" [(ngModel)]="ruleNameInput">
+        
+        <button type="button" class="btn btn-success" id="create">+ create rule</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-Default dropdown-toggle">sorted by:{{sortVariable}} <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="">last edited</a></li>
+                <li><a href="">name: alphabetically</a></li>
+            </ul>
         </div>
         
-        <div class="col-xs-7">
-            <app-rule-list></app-rule-list>
-        </div>
+        
+        
+    </div>
+    <div class="col-md-6">
+        <app-rule-list></app-rule-list>
     </div>
 </div>
+
 
