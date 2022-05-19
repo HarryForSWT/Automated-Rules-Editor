@@ -1,18 +1,48 @@
 <div class="container">
     <div class="row">
         
-            
-        <span class="glyphicon glyphicon-search"></span>
-        <input type="text" id="name" class="form-control col-2" placeholder="Search" [(ngModel)]="ruleNameInput">
+        <!--div class="div">
+            <span class="glyphicon glyphicon-search"></span>
+            <input type="text" id="name" class="form-control col-2" placeholder="Search" [(ngModel)]="ruleNameInput">
+        </div-->    
+        <mat-form-field class="search-form-field" appearance="fill">
+            <mat-label><mat-icon>search</mat-icon> search</mat-label>
+            <input matInput type="text" [(ngModel)]="ruleNameInput">
+            <button 
+                *ngIf="ruleNameInput" 
+                matSuffix mat-icon-button 
+                aria-label="Clear" 
+                (click)="ruleNameInput=''"
+                #tooltip="matTooltip"
+                matTooltip="Clear the input"
+                matTooltipPosition="above"
+                matTooltipHideDelay="500"
+                class="clear-button"
+                >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
         
         <button type="button" class="btn btn-success" id="create">+ create rule</button>
-        <div class="btn-group">
+
+
+        <mat-form-field appearance="fill">
+        <mat-label>sorted by</mat-label>
+        <mat-select [(value)]="sortVariable">
+            <mat-option value="last edited">last edited</mat-option>
+            <mat-option value="first edited">first editied</mat-option>
+            <mat-option value="name: alphabetically">name: alphabetically</mat-option>
+
+        </mat-select>
+        </mat-form-field>
+
+        <!--div class="btn-group">
             <button type="button" class="btn btn-Default dropdown-toggle">sorted by:{{sortVariable}} <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 <li><a href="">last edited</a></li>
                 <li><a href="">name: alphabetically</a></li>
             </ul>
-        </div>
+        </div-->
         
         
         
