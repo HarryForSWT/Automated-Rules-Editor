@@ -1,6 +1,6 @@
 <app-rule-item 
-*ngFor="let rule of rules" 
-[ruleIndex]="rules.indexOf(rule)+1"
+*ngFor="let rule of rules let i = index" 
+[ruleIndex]="i+1"
 ></app-rule-item>
 
 

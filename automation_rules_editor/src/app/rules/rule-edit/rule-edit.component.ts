@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-rule-edit',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rule-edit.component.scss']
 })
 export class RuleEditComponent implements OnInit {
-
-  constructor() { }
+  @Input('ruleIndex') ruleIndex: number;
+  constructor(private router: Router,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+  }
+  onBacktoRuleList(){
+    this.router.navigate(['/'],{relativeTo: this.route});
   }
 
 }
