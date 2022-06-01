@@ -168,9 +168,7 @@
                             ["checkIsChecked", true, "checkbox_c"]
                         ]
                     },
-                    [
-                        ["compareLessThanVar", true, "a", "b", "10%"]
-                    ]
+                    ["compareLessThanVar", true, "a", "b", "10%"]
                 ]
             }
         ],
