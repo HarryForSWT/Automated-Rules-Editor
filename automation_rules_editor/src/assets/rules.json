@@ -120,7 +120,7 @@
         "id": 9,
         "name": "Rule 10",
         "desc": "Give a warning, if at least one of three checkboxes is checked",
-        "created": ["Jacob", "2019-06-27T11:20"],
+        "created": ["Martin", "2020-08-12T09:36"],
         "last_edit": ["Mike", "2020-11-06T14:46"],
         "conditions": [
             {
@@ -150,6 +150,58 @@
         ],
         "actions": [
             ["addAttribute", "article_number", "123"]
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Rule 12",
+        "desc": "If one of the checkboxes is checked and a and b differ by less than 10%, create a warning",
+        "created": ["Max", "2019-06-05T19:30"],
+        "last_edit": ["Martin", "2021-08-06T09:48"],
+        "conditions": [
+            { 
+                "AND": [
+                    {
+                        "OR": [
+                            ["checkIsChecked", true, "checkbox_a"],
+                            ["checkIsChecked", true, "checkbox_b"],
+                            ["checkIsChecked", true, "checkbox_c"]
+                        ]
+                    },
+                    [
+                        ["compareLessThanVar", true, "a", "b", "10%"]
+                    ]
+                ]
+            }
+        ],
+        "actions": [
+            ["warning", "Example Warning"]
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Rule 13",
+        "desc": "if checkbox a is checked and inputfield a starts with 'the' or checkbox b is not checked and inputfield b is empty, throw warning",
+        "created": ["Mike", "2019-11-12T15:30"],
+        "last_edit": ["Lara", "2022-04-14T13:12"],
+        "conditions": [
+            {
+                "OR": [
+                    { "AND": 
+                        [ 
+                            ["checkIsChecked", true, "checkbox_a"], ["checkPrefix", true, "customer_number", "000"]
+                        ] 
+                    },
+                    { "AND": 
+                        [ 
+                            ["checkIsChecked", false, "checkbox_b"], ["checkIsEmpty", true, "inputfield_b"]
+                        ] 
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            ["warning", "Some Warning"]
         ]
     }
 ]    
