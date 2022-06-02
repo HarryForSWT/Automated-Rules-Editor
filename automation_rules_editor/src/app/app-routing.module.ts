@@ -11,6 +11,7 @@ const appRoutes:Routes = [
     {path:'', redirectTo:'/rules',pathMatch:'full'},
     {path:'rules',component:RulesComponent,
         children:[
+            {path:'', component: RuleListComponent},
             {path:'new',component:RuleEditComponent},
             //{path:':id',component:RuleItemComponent},
             {path:':id/edit',component:RuleEditComponent}

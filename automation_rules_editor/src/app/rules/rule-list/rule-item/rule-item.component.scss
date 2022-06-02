@@ -1,5 +1,27 @@
 .row{
     border-radius:10px;
     margin-bottom: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
+    #delete{
+        color: #40434d;
+        background-color: #ff8e8e;
+    }
+    #edit{
+        color: #40434d;
+    }
+}
+#ruleMeta{
+    margin-bottom: 20px;
+}
+
+.col-xs-8{
+    button{
+        width: 100px;
+    }
+}
+.col-xs-1{
+    button{
+        background-color: transparent;
+    }
+    
 }

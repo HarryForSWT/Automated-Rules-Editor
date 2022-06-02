@@ -4,8 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RulesService {
-  employees = ['Harry', 'Ron', 'Hermione'];
-  today: Date = new Date();
+  private employees = ['Harry', 'Ron', 'Hermione'];
+  private rules = [1,2,3];
+  private today: Date = new Date();
+  private isNewRule: boolean;
   constructor() {}
 
   getRandomEmployee(){
@@ -15,5 +17,16 @@ export class RulesService {
 
   getEditDate(){
     return this.today; 
+  }
+
+  getRulelist(){
+    return this.rules;
+  }
+
+  getIsNewRule(){
+    return this.isNewRule;
+  }
+  setIsNewRuleStatus(v: boolean){
+    this.isNewRule= v;
   }
 }

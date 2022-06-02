@@ -1,21 +1,26 @@
-<div class="row" [ngStyle]="{backgroundColor: ruleIndex%2===0 ? 'rgb(212, 212, 212)':'rgb(150, 150, 150)'}">
-    <div class="col-xs-1"> <button class="btn" (click)="onDetailsShow()"><span class="caret"></span></button></div>
+<div 
+    class="row" 
+    [ngStyle]="{backgroundColor: ruleIndex%2===0 ? '#eaeeff':'#c6d2ff'}">
+
+    <div class="col-xs-1" > 
+        <button class="btn" (click)="onDetailsShow()">
+            <mat-icon *ngIf="!details">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="details">keyboard_arrow_up</mat-icon>
+        </button>
+    </div>
     <div class="col-xs-10">
         <p><strong> Rule Number {{ruleIndex}}</strong></p>
         <p>If $item_price equals 1000 and checkbox_a is checked or $item_price is less then 800 and checkbox_b is checked then set $item_price to 1200</p>
         <div 
             class="col-xs-8"
+            id="ruleMeta"
             *ngIf="details">
             <p><strong>Name:</strong>  Rule Number {{ruleIndex}} </p>
             <p><strong>Last edited by: </strong>{{employeeEdit}}, {{timeNow | date:'short'}}</p>
             <p><strong>Created by: </strong>{{employeeCreate}}</p>
             <p><strong>Categories</strong></p>
-            <button mat-stroked-button color="primary" (click)="onRuleEdit()">Edit</button>
-            <button mat-flat-button color="warn">Delete</button>
+            <button mat-stroked-button color="primary" (click)="onRuleEdit()" id="edit"><mat-icon>edit</mat-icon>Edit</button>
+            <button mat-flat-button color="warn" id="delete"><mat-icon>delete</mat-icon>Delete</button>
         </div>
-        
-        
-        
-       
     </div>
 </div>

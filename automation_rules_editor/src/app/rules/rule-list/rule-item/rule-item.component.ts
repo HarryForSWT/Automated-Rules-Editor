@@ -37,6 +37,7 @@ export class RuleItemComponent implements OnInit {
   }
   onRuleEdit(){
     this.id = this.ruleIndex;
+    this.rulesService.setIsNewRuleStatus(false);
     this.router.navigate([this.id,'edit'], {relativeTo:this.route});
   }
 

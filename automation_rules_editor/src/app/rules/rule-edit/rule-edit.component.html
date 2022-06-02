@@ -1,3 +1,7 @@
-<p>{{ruleIndex}} is being edited!</p>
-<button mat-stroked-button color="primary" (click)="onBacktoRuleList()">Save</button>
-<button mat-flat-button color="warn" (click)="onBacktoRuleList()">Cancel</button>
+<div class="col-xs-12">
+    <h2 *ngIf="!isNewRule">Edit Rule</h2>
+    <h2 *ngIf="isNewRule">Create Rule</h2>
+    <p *ngIf="!isNewRule">{{ruleIndex}} is being edited!</p>
+    <button mat-stroked-button color="primary" (click)="onBacktoRuleList()"><mat-icon>save</mat-icon> Save</button>
+    <button mat-flat-button color="warn" (click)="onBacktoRuleList()"><mat-icon>close</mat-icon>Cancel</button>
+</div>
