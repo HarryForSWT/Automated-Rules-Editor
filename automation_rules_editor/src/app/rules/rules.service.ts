@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-
+import rules from '../../assets/rules.json';
+import { Rule } from './rule.module';
 @Injectable({
   providedIn: 'root'
 })
 export class RulesService {
   private employees = ['Harry', 'Ron', 'Hermione'];
-  private rules = [1,2,3];
   private today: Date = new Date();
   private isNewRule: boolean;
+  private rulesData: Rule[] = rules;
   constructor() {}
 
   getRandomEmployee(){
@@ -20,7 +21,18 @@ export class RulesService {
   }
 
   getRulelist(){
-    return this.rules;
+    return this.rulesData;
+  }
+  getRuleItem(id: number){
+    return this.rulesData[id-1];
+
+    /*
+     const server = this.servers.find(
+      (s) => {
+        return s.id === id;
+      }
+    );
+    return server; */
   }
 
   getIsNewRule(){
@@ -29,4 +41,5 @@ export class RulesService {
   setIsNewRuleStatus(v: boolean){
     this.isNewRule= v;
   }
+
 }

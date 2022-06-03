@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Rule } from '../rule.module';
 import { RulesService } from '../rules.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { RulesService } from '../rules.service';
   styleUrls: ['./rule-list.component.scss']
 })
 export class RuleListComponent implements OnInit {
-  rules: number[];
+  rules: Rule[];
   ruleNameInput: string;
   sortVariable: string= 'last edited';
   constructor(

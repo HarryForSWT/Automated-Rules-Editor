@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Rule } from '../../rule.module';
 import { RulesService } from '../../rules.service';
 
 @Component({
@@ -9,10 +10,15 @@ import { RulesService } from '../../rules.service';
 })
 export class RuleItemComponent implements OnInit {
   @Input('ruleIndex') ruleIndex: number;
-  //ruleName: string;
+  @Input() rule: Rule;
+  
+  ruleName: string;
+  ruleDesc: string;
   details:boolean= false;
   employeeCreate: string;
+  timeCreate: string;
   employeeEdit: String;
+  timeEdit: string;
   timeNow: Date;
   id: number;
   constructor(
@@ -21,14 +27,18 @@ export class RuleItemComponent implements OnInit {
     private router: Router
     ) { }
   ngOnInit(): void {
-    this.employeeEdit = this.rulesService.getRandomEmployee();
-    this.employeeCreate = this.rulesService.getRandomEmployee();
+    this.employeeEdit = this.rule.last_edit[0];
+    this.timeEdit = this.rule.last_edit[1];
+    this.employeeCreate = this.rule.created[0];
+    this.timeCreate = this.rule.created[1];
     this.timeNow = this.rulesService.getEditDate();
+    this.ruleDesc = this.rule.desc;
+    this.ruleName = this.rule.name;
 
     // this.route.params
     //   .subscribe(
     //     (params: Params) =>{
-    //       this.ruleName = 'Rule number '+ params['id'];
+    //       this.rule = 'Rule number '+ params['id'];
     //     }
     //   );
   }
