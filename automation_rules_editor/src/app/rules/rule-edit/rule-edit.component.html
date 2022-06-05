@@ -2,6 +2,41 @@
     <h2 *ngIf="!isNewRule">Edit Rule</h2>
     <h2 *ngIf="isNewRule">Create Rule</h2>
     <p *ngIf="!isNewRule">{{ruleIndex}} is being edited!</p>
+    <form>
+        <div class="form-group">
+            <label for="ruleName">Name</label>
+            <input
+              type="text"
+              id="ruleName"
+              
+              class="form-control">
+           
+        </div>
+
+        <div class="form-group">
+            <label for="desc">Description</label><br>
+           
+        </div>
+
+        <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Tags</mat-label>
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+                {{tag}}
+                <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input placeholder="New tag..."
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+          </mat-form-field>
+        
+
+    </form>
     <button mat-stroked-button color="primary" (click)="onBacktoRuleList()"><mat-icon>save</mat-icon> Save</button>
     <button mat-flat-button color="warn" (click)="onBacktoRuleList()"><mat-icon>close</mat-icon>Cancel</button>
 </div>
