@@ -29,9 +29,9 @@ export class RuleItemComponent implements OnInit {
     ) { }
   ngOnInit(): void {
     this.employeeEdit = this.rule.last_edit[0];
-    this.timeEdit = this.rule.last_edit[1];
+    this.timeEdit = this.rule.last_edit[1].replace("T", ", ");
     this.employeeCreate = this.rule.created[0];
-    this.timeCreate = this.rule.created[1];
+    this.timeCreate = this.rule.created[1].replace("T", ", ");
     this.timeNow = this.rulesService.getEditDate();
     this.ruleDesc = this.rule.desc;
     this.ruleName = this.rule.name;

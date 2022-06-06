@@ -15,6 +15,8 @@ export class RuleEditComponent implements OnInit {
   ruleIndex: number;
   signupForm: FormGroup;
   ruleNameDesc='';
+  ruleName = "";
+  ruleDesc = "";
   ruleData: Rule;
 
   tags: string[];
@@ -40,6 +42,8 @@ export class RuleEditComponent implements OnInit {
     if(!this.isNewRule) {
       this.ruleData = this.rulesService.getRuleItem(this.ruleIndex);
       this.tags = this.ruleData.categories;
+      this.ruleName = this.ruleData.name;
+      this.ruleDesc = this.ruleData.desc;
     }
 
     this.signupForm = new FormGroup({
