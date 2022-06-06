@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RulesService } from '../rules.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Rule } from '../rule.module';
 
 @Component({
   selector: 'app-rule-edit',
@@ -14,8 +15,9 @@ export class RuleEditComponent implements OnInit {
   ruleIndex: number;
   signupForm: FormGroup;
   ruleNameDesc='';
+  ruleData: Rule;
 
-  tags=['todo','tag xyz'];
+  tags: string[];
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
@@ -34,6 +36,11 @@ export class RuleEditComponent implements OnInit {
         }
       );
     this.isNewRule = this.rulesService.getIsNewRule();
+
+    if(!this.isNewRule) {
+      this.ruleData = this.rulesService.getRuleItem(this.ruleIndex);
+      this.tags = this.ruleData.categories;
+    }
 
     this.signupForm = new FormGroup({
       'ruleName' : new FormControl(null),

@@ -3,6 +3,7 @@
         "id": 0,
         "name": "Rule 1",
         "desc": "If item type is 'invoice', subtract the 'total gross' of the invoice from the 'main bank account'",
+        "categories": ["Accounting"],
         "created": ["Max", "2020-06-25T12:20"],
         "last_edit": ["Lara", "2021-04-14T13:12"],
         "conditions": [
@@ -16,6 +17,7 @@
         "id": 1,
         "name": "Rule 2",
         "desc": "If a currency symbol occurs in the 'amount' field, cut if off",
+        "categories": ["Formal"],
         "created": ["Michael", "2020-06-25T12:20"],
         "last_edit": ["Lara", "2021-04-14T13:12"],
         "conditions": [
@@ -29,6 +31,7 @@
         "id": 2,
         "name": "Rule 3",
         "desc": "If the value of a 'date' field is in the wrong format, reformat it",
+        "categories": ["Formal"],
         "created": ["Mike", "2022-04-25T12:20"],
         "last_edit": ["Lara", "2022-04-28T13:12"],
         "conditions": [
@@ -42,6 +45,7 @@
         "id": 3,
         "name": "Rule 4",
         "desc": "If multiple 'invoice numbers' are present, throw a warning",
+        "categories": ["ToDo"],
         "created": ["Mike", "2022-04-03T12:20"],
         "last_edit": ["Martin", "2022-04-14T13:12"],
         "conditions": [
@@ -55,6 +59,7 @@
         "id": 4,
         "name": "Rule 5",
         "desc": "If there is no 'delivery date' given on an invoice, use the invoice date as the delivery date",
+        "categories": ["Accounting"],
         "created": ["Sandra", "2020-08-17T15:20"],
         "last_edit": ["Martin", "2021-12-14T13:38"],
         "conditions": [
@@ -68,6 +73,7 @@
         "id": 5,
         "name": "Rule 6",
         "desc": "If 'total gross' of an invoice is above 1000€, add an attribute 'approval needed'",
+        "categories": ["Formal"],
         "created": ["Sandra", "2019-08-17T15:20"],
         "last_edit": ["Martin", "2021-12-14T13:38"],
         "conditions": [
@@ -81,6 +87,7 @@
         "id": 6,
         "name": "Rule 7",
         "desc": "Compare two numeric fields a and b. If their distance is below 1.5cm, take the value of a also for b and add 1.5cm to b",
+        "categories": ["Logistics"],
         "created": ["Martin", "2019-09-21T15:20"],
         "last_edit": ["Mike", "2021-08-06T15:38"],
         "conditions": [
@@ -94,6 +101,7 @@
         "id": 7,
         "name": "Rule 8",
         "desc": "Check if a and b differ by less than 10%",
+        "categories": ["Formal"],
         "created": ["Sandra", "2020-09-03T08:20"],
         "last_edit": ["Mike", "2021-08-06T12:46"],
         "conditions": [
@@ -107,6 +115,7 @@
         "id": 8,
         "name": "Rule 9",
         "desc": "If no 'color' is given, set 'Mandel' as default color",
+        "categories": ["ToDo", "Formal"],
         "created": ["Thomas", "2018-09-27T11:20"],
         "last_edit": ["Mike", "2020-06-06T14:46"],
         "conditions": [
@@ -120,6 +129,7 @@
         "id": 9,
         "name": "Rule 10",
         "desc": "Give a warning, if at least one of three checkboxes is checked",
+        "categories": ["Logistics"],
         "created": ["Martin", "2020-08-12T09:36"],
         "last_edit": ["Mike", "2020-11-06T14:46"],
         "conditions": [
@@ -139,6 +149,7 @@
         "id": 10,
         "name": "Rule 11",
         "desc": "If checkbox a, checkbox b, and inputfield c are filled, create the article number “123”",
+        "categories": ["ToDo"],
         "created": ["Max", "2018-06-12T19:30"],
         "last_edit": ["Lara", "2021-04-14T13:12"],
         "conditions": [
@@ -156,6 +167,7 @@
         "id": 11,
         "name": "Rule 12",
         "desc": "If one of the checkboxes is checked and a and b differ by less than 10%, create a warning",
+        "categories": ["ToDo", "Formal"],
         "created": ["Max", "2019-06-05T19:30"],
         "last_edit": ["Martin", "2021-08-06T09:48"],
         "conditions": [
@@ -180,6 +192,7 @@
         "id": 12,
         "name": "Rule 13",
         "desc": "if checkbox a is checked and inputfield a starts with 'the' or checkbox b is not checked and inputfield b is empty, throw warning",
+        "categories": ["Accounting", "Formal"],
         "created": ["Mike", "2019-11-12T15:30"],
         "last_edit": ["Lara", "2022-04-14T13:12"],
         "conditions": [

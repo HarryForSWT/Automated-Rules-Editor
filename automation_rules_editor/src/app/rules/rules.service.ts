@@ -41,5 +41,5 @@ export class RulesService {
   setIsNewRuleStatus(v: boolean){
     this.isNewRule= v;
   }
-
+  
 }
