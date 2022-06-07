@@ -1,6 +1,13 @@
 # KP Automation Rules Editor
 
-## Getting started
+## Running with Angular CLI
+
+ng serve
+
+## Running via Node.js
+
+This Application can also be run with a node.js server which is able to provide the json data via http request.
+This functionality is not used by the angular application yet.
 
 ### Install Dependencies
 
@@ -12,4 +19,4 @@ ng build
 
 ### Start Server
 
-node ./server.js
+nodemon ./server.js
