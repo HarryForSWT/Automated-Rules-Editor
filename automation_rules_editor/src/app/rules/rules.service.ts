@@ -12,7 +12,7 @@ export class RulesService {
   private isNewRule: boolean;
   private rulesData: Rule[] = [];
   constructor(private http: HttpClient) {
-    this.http.get<any>('http://localhost:4201/json').subscribe(data => {
+    this.http.get<any>('./assets/rules.json').subscribe(data => {
       data.forEach(e => {
         let rule: Rule = new Rule(e.id, e.name, e.desc, e.categories, e.created, e.last_edit, e.conditions, e.actions);
         this.rulesData.push(rule);
