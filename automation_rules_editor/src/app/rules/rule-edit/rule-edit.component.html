@@ -62,7 +62,6 @@
         cdkDropList
         #chosenActionsList="cdkDropList"
         [cdkDropListData]="chosenActions"
-        [cdkDropListConnectedTo]="[possibleActionsList]"
         class="action-list chosen"
         (cdkDropListDropped)="drop($event)">
         <div class="action-box chosen" *ngFor="let item of chosenActions" cdkDrag>{{item.name}}</div>
