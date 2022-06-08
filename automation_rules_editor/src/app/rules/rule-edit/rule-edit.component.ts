@@ -5,6 +5,8 @@ import { RulesService } from '../rules.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Rule } from '../rule.module';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Action } from './action.module';
 
 @Component({
   selector: 'app-rule-edit',
@@ -22,6 +24,30 @@ export class RuleEditComponent implements OnInit {
   tags: string[];
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  possibleActions = [
+    new Action(0, 'Change Value', null, false),
+    new Action(1, 'Set Value', null, false),
+    new Action(2, 'Advanced Calculation', null, false),
+    new Action(3, 'Warning', null, false),
+    new Action(4, 'Add Attribute', null, false),
+    new Action(5, 'Apply Regex', null, false)
+  ];
+
+  chosenActions = [new Action(1, 'Set Value', ['revenue', '5000'], true)];
+
+  drop(event: CdkDragDrop<Action[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
 
   constructor(
     private router: Router,

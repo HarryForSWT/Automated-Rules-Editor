@@ -42,6 +42,34 @@
         
 
     </form>
+
+    <div class="actions-container">
+      <mat-label>Possible Actions</mat-label>
+      <div
+        cdkDropList
+        cdkDropListOrientation = "horizontal"
+        cdkDropListSortingDisabled
+        #possibleActionsList="cdkDropList"
+        [cdkDropListData]="possibleActions"
+        [cdkDropListConnectedTo]="[chosenActionsList]"
+        class="action-list"
+        (cdkDropListDropped)="drop($event)">
+          <div class="action-box" *ngFor="let item of possibleActions" cdkDrag>{{item.name}}</div>
+      </div>
+
+      <mat-label>Chosen Actions</mat-label>
+      <div
+        cdkDropList
+        #chosenActionsList="cdkDropList"
+        [cdkDropListData]="chosenActions"
+        [cdkDropListConnectedTo]="[possibleActionsList]"
+        class="action-list chosen"
+        (cdkDropListDropped)="drop($event)">
+        <div class="action-box chosen" *ngFor="let item of chosenActions" cdkDrag>{{item.name}}</div>
+      </div>
+
+    </div>
+
     <button mat-stroked-button color="primary" (click)="onBacktoRuleList()" class="window_button"><mat-icon>save</mat-icon> Save</button>
     <button mat-flat-button color="warn" (click)="onBacktoRuleList()" class="window_button"><mat-icon>close</mat-icon>Cancel</button>
 </div>
