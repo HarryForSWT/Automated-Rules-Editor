@@ -10,7 +10,7 @@
             ["checkType", true, "item", "invoice"]
         ],
         "actions": [
-            ["subVar", "main_bank_account", "total_gross"]
+            ["changeValue", ["main_bank_account", "-", "total_gross"]]
         ]
     },
     {
@@ -24,7 +24,7 @@
             ["checkContains", true, "field_id", "€", "$"]
         ],
         "actions": [
-            ["remove", "input_field", "€"]
+            ["changeValue", ["input_field", "REM", "€"]]
         ]
     },
     {
@@ -38,7 +38,7 @@
             ["checkRegex", true, "date", "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)"]
         ],
         "actions": [
-            ["setRegex", "date", "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)"]
+            ["setRegex", ["date", "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)"]]
         ]
     },
     {
@@ -52,7 +52,7 @@
             ["checkMultiple", true, "invoice numbers"]
         ],
         "actions": [
-            ["warning", "Multiple invoice numbers are present!"]
+            ["warning", ["Multiple invoice numbers are present!", "Informational"]]
         ]
     },
     {
@@ -66,7 +66,7 @@
             ["checkExistence", false, "delivery_date"]
         ],
         "actions": [
-            ["setVar", "delivery_date", "invoice_date"]
+            ["changeValue", ["delivery_date", "=", "invoice_date"]]
         ]
     },
     {
@@ -80,7 +80,7 @@
             ["compareGreaterThanFixed", true, "total_gross", "1000€"]
         ],
         "actions": [
-            ["addAttribute", "approval_needed"]
+            ["addAttribute", ["approval", "approval_needed"]]
         ]
     },
     {
@@ -94,7 +94,8 @@
             ["compareLessThanVar", true, "field_one_id", "field_two_id", "1.5cm"]
         ],
         "actions": [
-            ["setVar", "b", "a"], ["addFixed", "b", "1.5cm"]
+            ["changeValue", ["b", "=", "a"]], 
+            ["changeValue", ["b", "+", "1.5cm"]]
         ]
     },
     {
@@ -108,7 +109,7 @@
             ["compareLessThanVar", true, "a", "b", "10%"]
         ],
         "actions": [
-            ["warning", "Values differ too much!"]
+            ["warning", ["Values differ too much!", "Critical"]]
         ]
     },
     {
@@ -122,7 +123,7 @@
             ["checkExistence", false, "color"]
         ],
         "actions": [
-            ["setFixed", "color", "Mandel"]
+            ["changeValue", ["color", "Mandel"]]
         ]
     },
     {
@@ -142,7 +143,7 @@
             }
         ],
         "actions": [
-            ["warning", "One of the checkboxes has been checked!"]
+            ["warning", ["One of the checkboxes has been checked!", "Reminder"]]
         ]
     },
     {
@@ -160,7 +161,7 @@
             ] }
         ],
         "actions": [
-            ["addAttribute", "article_number", "123"]
+            ["addAttribute", ["article_number", "123"]]
         ]
     },
     {
@@ -185,7 +186,7 @@
             }
         ],
         "actions": [
-            ["warning", "Example Warning"]
+            ["warning", ["Example Warning", "Informational"]]
         ]
     },
     {
@@ -212,7 +213,7 @@
             }
         ],
         "actions": [
-            ["warning", "Some Warning"]
+            ["warning", ["Some Warning", "Critical"]]
         ]
     }
 ]    

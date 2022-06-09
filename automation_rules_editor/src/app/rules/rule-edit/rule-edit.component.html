@@ -1,7 +1,6 @@
 <div class="col-xs-12">
-    <h2 *ngIf="!isNewRule">Edit Rule</h2>
+    <h2 *ngIf="!isNewRule">Edit Rule {{ruleIndex}}</h2>
     <h2 *ngIf="isNewRule">Create Rule</h2>
-    <p *ngIf="!isNewRule">Rule Number {{ruleIndex}} is being edited!</p>
     <form>
         <div class="form-group">
             <label for="ruleName">Name</label>
@@ -9,18 +8,16 @@
               type="text"
               id="ruleName"
               value="{{ruleName}}"
-              class="form-control">
-           
-        </div>
-
-        <div class="form-group">
+              class="form-control"
+              required>
+              
             <label for="desc">Description</label>
             <input
               type="text"
               id="ruleDesc"
               value="{{ruleDesc}}"
-              class="form-control">
-           
+              class="form-control"
+              required> 
         </div>
 
         <mat-form-field class="example-chip-list" appearance="fill">
@@ -54,7 +51,10 @@
         [cdkDropListConnectedTo]="[chosenActionsList]"
         class="action-list"
         (cdkDropListDropped)="drop($event)">
-          <div class="action-box" *ngFor="let item of possibleActions" cdkDrag>{{item.name}}</div>
+          <div class="action-box" *ngFor="let item of possibleActions" cdkDrag>
+            <div class="drag-placeholder" *cdkDragPlaceholder></div>
+            {{item.name}}
+          </div>
       </div>
 
       <mat-label>Chosen Actions</mat-label>
@@ -64,11 +64,61 @@
         [cdkDropListData]="chosenActions"
         class="action-list chosen"
         (cdkDropListDropped)="drop($event)">
-        <div class="action-box chosen" *ngFor="let item of chosenActions" cdkDrag>{{item.name}}</div>
+        <div class="action-box chosen" *ngFor="let item of chosenActions" cdkDrag>
+          <div class="drag-placeholder" *cdkDragPlaceholder></div>
+
+          <div class="action-params" *ngIf="item.name==='changeValue'">
+            <strong>Change Value</strong>
+            <br>
+            <input type="text" value="{{item.params[0]}}" placeholder="affected variable">
+            <select id="selectedOperator">
+              <option value="+" [selected]="item.params[1]==='+'">+</option>
+              <option value="-" [selected]="item.params[1]==='-'">-</option>
+              <option value="*" [selected]="item.params[1]==='*'">*</option>
+              <option value="/" [selected]="item.params[1]==='/'">/</option>
+              <option value="=" [selected]="item.params[1]==='='">=</option>
+              <option value="REM" [selected]="item.params[1]==='REM'">REM</option>
+              <option value="APP" [selected]="item.params[1]==='APP'">APP</option>
+            </select>
+            <input type="text" value="{{item.params[2]}}" placeholder="value/input field">
+          </div>
+
+          <div class="action-params" *ngIf="item.name==='warning'">
+            <strong>Warning</strong>
+            <br>
+            <input type="text" value="{{item.params[0]}}" placeholder="Message">
+            <select id="selectedOperator">
+              <option value="Informational" [selected]="item.params[1]==='Informational'">Informational</option>
+              <option value="Reminder" [selected]="item.params[1]==='Reminder'">Reminder</option>
+              <option value="Critical" [selected]="item.params[1]==='Critical'">Critical</option>
+            </select>
+          </div>
+
+          <div class="action-params" *ngIf="item.name==='addAttribute'">
+            <strong>Add Attribute</strong>
+            <br>
+            <input type="text" value="{{item.params[0]}}" placeholder="Attribute Name">
+            <input type="text" value="{{item.params[1]}}" placeholder="Value">
+          </div>
+
+          <div class="action-params" *ngIf="item.name==='setRegex'">
+            <strong>Apply Regular Expression</strong>
+            <br>
+            <input type="text" value="{{item.params[0]}}" placeholder="Variable/Field">
+            <input type="text" value="{{item.params[1]}}" placeholder="Regular Expression">
+          </div>
+
+          <div class="action-params" *ngIf="item.name==='advancedCalculation'">
+            <strong>Advanced Calculation</strong>
+            <br>
+            <input type="text" value="{{item.params[0]}}" placeholder="Expression">
+          </div>
+          
+        </div>
       </div>
 
     </div>
 
-    <button mat-stroked-button color="primary" (click)="onBacktoRuleList()" class="window_button"><mat-icon>save</mat-icon> Save</button>
+    <button mat-stroked-button color="primary" (click)="saveAndBack()" class="window_button"><mat-icon>save</mat-icon> Save</button>
     <button mat-flat-button color="warn" (click)="onBacktoRuleList()" class="window_button"><mat-icon>close</mat-icon>Cancel</button>
 </div>

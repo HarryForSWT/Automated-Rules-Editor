@@ -34,6 +34,7 @@ export class RulesService {
     return this.rulesData;
   }
   getRuleItem(id: number){
+    console.log(this.rulesData[id-1]);
     return this.rulesData[id-1];
 
     /*
@@ -50,6 +51,10 @@ export class RulesService {
   }
   setIsNewRuleStatus(v: boolean){
     this.isNewRule= v;
+  }
+
+  saveRule(id:number, rule: Rule){
+    this.rulesData[id-1] = rule;
   }
   
 }

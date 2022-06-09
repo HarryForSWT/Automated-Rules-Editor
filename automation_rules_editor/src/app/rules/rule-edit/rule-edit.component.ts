@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RulesService } from '../rules.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
@@ -16,25 +16,24 @@ import { Action } from './action.module';
 export class RuleEditComponent implements OnInit {
   ruleIndex: number;
   signupForm: FormGroup;
-  ruleNameDesc='';
   ruleName = "";
   ruleDesc = "";
   ruleData: Rule;
+  chosenActions: Action[] = [];
 
-  tags: string[];
+  tags: string[] = [];
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   possibleActions = [
-    new Action(0, 'Change Value', null, false),
-    new Action(1, 'Set Value', null, false),
-    new Action(2, 'Advanced Calculation', null, false),
-    new Action(3, 'Warning', null, false),
-    new Action(4, 'Add Attribute', null, false),
-    new Action(5, 'Apply Regex', null, false)
+    new Action(0, 'changeValue', [], false),
+    new Action(1, 'advancedCalculation', [], false),
+    new Action(2, 'warning', [], false),
+    new Action(3, 'addAttribute', [], false),
+    new Action(4, 'setRegex', [], false)
   ];
 
-  chosenActions = [new Action(1, 'Set Value', ['revenue', '5000'], true)];
+  //chosenActions = [new Action(1, 'Change Value', ['revenue', '=', '5000'], true)];
 
   drop(event: CdkDragDrop<Action[]>) {
     if (event.previousContainer === event.container) {
@@ -70,12 +69,38 @@ export class RuleEditComponent implements OnInit {
       this.tags = this.ruleData.categories;
       this.ruleName = this.ruleData.name;
       this.ruleDesc = this.ruleData.desc;
+
+      this.ruleData.actions.forEach(a => {
+        let action = new Action(0, a[0], a[1], true);
+        this.chosenActions.push(action);
+      })
     }
 
     this.signupForm = new FormGroup({
       'ruleName' : new FormControl(null),
       'tags': new FormArray([])
     });
+
+    
+  }
+
+  saveAndBack() {
+    // if new Rule is created, a new Rule object first must be initialized
+    if(this.isNewRule) {
+      let now = new Date().toString();
+      this.ruleData = new Rule(55, "", "", this.tags, ["Mike", now], ["Mike", now], [], []);
+    }
+    // bring rules back into JSON format
+    this.ruleData.actions = [];
+    this.chosenActions.forEach(a => {
+      this.ruleData.actions.push([a.name, a.params]);
+    })
+    
+    this.ruleData.name = (<HTMLInputElement>document.getElementById("ruleName")).value;
+    this.ruleData.desc = (<HTMLInputElement>document.getElementById("ruleDesc")).value;
+    console.log(this.ruleData);
+    this.rulesService.saveRule(this.ruleIndex, this.ruleData);
+    this.onBacktoRuleList();
   }
 
   onBacktoRuleList(){
