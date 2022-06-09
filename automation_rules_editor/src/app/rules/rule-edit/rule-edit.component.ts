@@ -7,6 +7,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Rule } from '../rule.module';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, copyArrayItem} from '@angular/cdk/drag-drop';
 import { Action } from './action.module';
+import { Condition } from './condition.module';
 
 @Component({
   selector: 'app-rule-edit',
@@ -19,14 +20,19 @@ export class RuleEditComponent implements OnInit {
   ruleName = "";
   ruleDesc = "";
   ruleData: Rule;
-  chosenConditions : string[] = [];
+  chosenConditions : Condition[] = [];
   chosenActions: Action[] = [];
 
   tags: string[] = [];
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-  possibleConditions = ["Existence", "Checked/Filled", "Comparison", "Prefix", "Regex"];
+  possibleConditions = [
+    new Condition(0, 'existence', false, [], false),
+    new Condition(1, 'checkedFilled', false, [], false),
+    new Condition(2, 'comparison', false, [], false),
+    new Condition(3, 'prefix', false, [], false),
+    new Condition(4, 'regex', false, [], false)];
 
   possibleActions = [
     new Action(0, 'changeValue', [], false),
@@ -51,7 +57,7 @@ export class RuleEditComponent implements OnInit {
     }
   }
 
-  dropCondition(event: CdkDragDrop<string[]>) {
+  dropCondition(event: CdkDragDrop<Condition[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
