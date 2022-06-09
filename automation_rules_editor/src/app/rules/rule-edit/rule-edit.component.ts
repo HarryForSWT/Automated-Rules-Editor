@@ -121,7 +121,7 @@ export class RuleEditComponent implements OnInit {
     this.ruleData.name = (<HTMLInputElement>document.getElementById("ruleName")).value;
     this.ruleData.desc = (<HTMLInputElement>document.getElementById("ruleDesc")).value;
     console.log(this.ruleData);
-    this.rulesService.saveRule(this.ruleIndex, this.ruleData);
+    this.rulesService.saveRule(this.ruleIndex, this.ruleData, this.isNewRule);
     this.onBacktoRuleList();
   }
 

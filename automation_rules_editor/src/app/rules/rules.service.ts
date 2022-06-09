@@ -53,8 +53,13 @@ export class RulesService {
     this.isNewRule= v;
   }
 
-  saveRule(id:number, rule: Rule){
-    this.rulesData[id-1] = rule;
+  saveRule(id:number, rule: Rule, newRule: boolean){
+    if(newRule) {
+      this.rulesData.push(rule);
+    } else {
+      this.rulesData[id-1] = rule;
+    }
+    console.log(this.rulesData);
   }
   
 }
