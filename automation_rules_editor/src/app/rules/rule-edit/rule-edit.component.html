@@ -1,69 +1,84 @@
 <div class="col-xs-12">
-    <h2 *ngIf="!isNewRule">Edit Rule {{ruleIndex}}</h2>
-    <h2 *ngIf="isNewRule">Create Rule</h2>
-    <form>
-        <div class="form-group">
-            <label for="ruleName">Name</label>
-            <input
-              type="text"
-              id="ruleName"
-              value="{{ruleName}}"
-              class="form-control"
-              required>
-              
-            <label for="desc">Description</label>
-            <input
-              type="text"
-              id="ruleDesc"
-              value="{{ruleDesc}}"
-              class="form-control"
-              required> 
-        </div>
+  <h2 *ngIf="!isNewRule">Edit Rule {{ruleIndex}}</h2>
+  <h2 *ngIf="isNewRule">Create Rule</h2>
+  <form>
+    <div class="form-group">
+      <label for="ruleName">Name</label>
+      <input type="text" id="ruleName" value="{{ruleName}}" class="form-control" required>
 
-        <mat-form-field class="example-chip-list" appearance="fill">
-            <mat-label>Tags</mat-label>
-            <mat-chip-list #chipList aria-label="Fruit selection">
-              <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
-                {{tag}}
-                <button matChipRemove>
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </mat-chip>
-              <input placeholder="New tag..."
-                     [matChipInputFor]="chipList"
-                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                     [matChipInputAddOnBlur]="addOnBlur"
-                     (matChipInputTokenEnd)="add($event)">
-            </mat-chip-list>
-          </mat-form-field>
-        
+      <label for="desc">Description</label>
+      <input type="text" id="ruleDesc" value="{{ruleDesc}}" class="form-control" required>
+    </div>
 
-    </form>
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Tags</mat-label>
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+          {{tag}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input placeholder="New tag..." [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+  </form>
 
-    <div class="actions-container">
-      <mat-label>Possible Actions</mat-label>
-      <div
+  <!-- Drag&Drop for Conditions -->
+  <div class="conditions-container">
+    <mat-label>Conditions</mat-label>
+    <div cdkDropListGroup>
+      <div 
         cdkDropList
-        cdkDropListOrientation = "horizontal"
+        cdkDropListOrientation="horizontal"
         cdkDropListSortingDisabled
         #possibleActionsList="cdkDropList"
-        [cdkDropListData]="possibleActions"
-        [cdkDropListConnectedTo]="[chosenActionsList]"
-        class="action-list"
-        (cdkDropListDropped)="drop($event)">
-          <div class="action-box" *ngFor="let item of possibleActions" cdkDrag>
-            <div class="drag-placeholder" *cdkDragPlaceholder></div>
-            {{item.name}}
-          </div>
+        [cdkDropListData]="possibleConditions"
+        class="condition-list"
+        (cdkDropListDropped)="dropCondition($event)">
+        <div class="condition-box" *ngFor="let item of possibleConditions" cdkDrag>
+          <div class="drag-placeholder" *cdkDragPlaceholder></div>
+          {{item}}
+        </div>
       </div>
-
-      <mat-label>Chosen Actions</mat-label>
       <div
+        cdkDropList
+        #chosenActionsList="cdkDropList"
+        [cdkDropListData]="chosenConditions"
+        class="condition-list chosen"
+        (cdkDropListDropped)="dropCondition($event)">
+        <div class="condition-box chosen" *ngFor="let item of chosenConditions" cdkDrag>
+          <div class="drag-placeholder" *cdkDragPlaceholder></div>
+          {{item}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drag&Drop for Actions -->
+  <div class="actions-container">
+    <mat-label>Actions</mat-label>
+    <div cdkDropListGroup>
+      <div 
+        cdkDropList 
+        cdkDropListOrientation="horizontal" 
+        cdkDropListSortingDisabled 
+        #possibleActionsList="cdkDropList"
+        [cdkDropListData]="possibleActions" 
+        class="action-list">
+        <div class="action-box" *ngFor="let item of possibleActions" cdkDrag>
+          <div class="drag-placeholder" *cdkDragPlaceholder></div>
+          {{item.name}}
+        </div>
+      </div>
+      <div 
         cdkDropList
         #chosenActionsList="cdkDropList"
         [cdkDropListData]="chosenActions"
         class="action-list chosen"
-        (cdkDropListDropped)="drop($event)">
+        (cdkDropListDropped)="dropAction($event)">
         <div class="action-box chosen" *ngFor="let item of chosenActions" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
 
@@ -113,12 +128,16 @@
             <br>
             <input type="text" value="{{item.params[0]}}" placeholder="Expression">
           </div>
-          
+
         </div>
       </div>
-
     </div>
+  </div>
 
-    <button mat-stroked-button color="primary" (click)="saveAndBack()" class="window_button"><mat-icon>save</mat-icon> Save</button>
-    <button mat-flat-button color="warn" (click)="onBacktoRuleList()" class="window_button"><mat-icon>close</mat-icon>Cancel</button>
+  <button mat-stroked-button color="primary" (click)="saveAndBack()" class="window_button">
+    <mat-icon>save</mat-icon>Save
+  </button>
+  <button mat-flat-button color="warn" (click)="onBacktoRuleList()" class="window_button">
+    <mat-icon>close</mat-icon>Cancel
+  </button>
 </div>

@@ -10,80 +10,130 @@ h2{
     margin: 0px 5px 10px 5px;
 }
 
-.actions-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 25px 25px 0;
-    display: inline-block;
-    vertical-align: top;
-  }
-  
-  .action-list {
-    border: solid 1px #ccc;
-    min-height: 50px;
-    background: white;
-    border-radius: 4px;
-    overflow: hidden;
-    display: flex;
-    overflow: auto;
-  }
-  
-  .action-box {
-    padding: 15px 10px;
-    border-bottom: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
-    display: block;
-    width: fit-content;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    cursor: move;
-    background: white;
-    font-size: 14px;
-  }
+/* Styling for Condition Drag&Drop */
 
-  .action-box.chosen {
-      width: 100%;
-  }
-  
-  .action-list.chosen {
-    flex-direction: column;
+.conditions-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
 }
 
-  .cdk-drag-preview {
-    box-sizing: border-box;
-    border-radius: 6px;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12);
-  }
+.condition-list {
+  border: solid 1px #ccc;
+  min-height: 50px;
+  background: white;
+  border-radius: 4px 4px 0px 0px;
+  border-bottom: 1px solid rgb(75, 75, 75);
+  background-color: #ccc; 
+  overflow: hidden;
+  display: flex;
+  overflow: auto;
+}
   
+.condition-box {
+  padding: 10px 10px;
+  margin: 5px 5px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: block;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  font-size: 14px;
+  border: 1px solid rgb(75, 75, 75);
+  border-radius: 2px;
+}
 
-  .cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-  }
+.condition-box.chosen {
+  width: 100%;
+  margin: 2px 0px;
+}
   
-  .example-box:last-child {
-    border: none;
-  }
+.condition-list.chosen {
+  flex-direction: column;
+  border: solid 1px #ccc;
+  border-radius: 0px 0px 4px 4px;
+  background-color: #fff; 
+}
+
+
+
+// Styling for Action Drag & Drop
+
+.actions-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
   
-  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-  }
+.action-list {
+  border: solid 1px #ccc;
+  min-height: 50px;
+  background: white;
+  border-radius: 4px 4px 0px 0px;
+  border-bottom: 1px solid rgb(75, 75, 75);
+  background-color: #ccc; 
+  overflow: hidden;
+  display: flex;
+  overflow: auto;
+}
+  
+.action-box {
+  padding: 10px 10px;
+  margin: 5px 5px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: block;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  font-size: 14px;
+  border: 1px solid rgb(75, 75, 75);
+  border-radius: 2px;
+}
 
-  .drag-placeholder {
-    background: #fa4e43;
-    border: dotted 2px #999;
-    min-height: 50px;
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-    opacity: 0.5;
-  }
+.action-box.chosen {
+  width: 100%;
+  margin: 2px 0px;
+}
+  
+.action-list.chosen {
+  flex-direction: column;
+  border: solid 1px #ccc;
+  border-radius: 0px 0px 4px 4px;
+  background-color: #fff; 
+}
 
-  .action-params {
-    margin: 5px;
-  }
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 6px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
 
-  .action-params * {
-    margin: 0px 5px;
-  }
+.drag-placeholder {
+  background: #fa4e43;
+  border: dotted 2px #999;
+  min-height: 50px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  opacity: 0.5;
+}
+
+.action-params {
+  margin: 5px;
+}
+
+.action-params * {
+  margin: 0px 5px;
+}

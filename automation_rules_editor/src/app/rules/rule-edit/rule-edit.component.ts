@@ -19,11 +19,14 @@ export class RuleEditComponent implements OnInit {
   ruleName = "";
   ruleDesc = "";
   ruleData: Rule;
+  chosenConditions : string[] = [];
   chosenActions: Action[] = [];
 
   tags: string[] = [];
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  possibleConditions = ["Existence", "Checked/Filled", "Comparison", "Prefix", "Regex"];
 
   possibleActions = [
     new Action(0, 'changeValue', [], false),
@@ -35,7 +38,20 @@ export class RuleEditComponent implements OnInit {
 
   //chosenActions = [new Action(1, 'Change Value', ['revenue', '=', '5000'], true)];
 
-  drop(event: CdkDragDrop<Action[]>) {
+  dropAction(event: CdkDragDrop<Action[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      copyArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
+
+  dropCondition(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
