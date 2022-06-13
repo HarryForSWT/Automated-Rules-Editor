@@ -20,8 +20,10 @@ export class RuleEditComponent implements OnInit {
   ruleName = "";
   ruleDesc = "";
   ruleData: Rule;
-  chosenConditions : Condition[] = [];
+  chosenConditionsMulti: Condition[][] = [[new Condition(0, "existence", false, [], true), new Condition(2, "regex", false, [], true)], [new Condition(5, "prefix", false, [], true)], [new Condition(5, "comparison", false, [], true)]];
+  chosenConditions: Condition[] = [];
   chosenActions: Action[] = [];
+  conditionBlocks = ["Block1", "Block2", "Block3"];
 
   tags: string[] = [];
   addOnBlur = true;
@@ -44,6 +46,30 @@ export class RuleEditComponent implements OnInit {
 
   //chosenActions = [new Action(1, 'Change Value', ['revenue', '=', '5000'], true)];
 
+  dropCondition(event: CdkDragDrop<Condition[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      if(event.previousContainer.id == "droplist-possible-conditions") {
+        // copy item if it is from the possible conditions
+        copyArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
+      } else {
+        // transfer the item if it is moved from one chosen condition list to another
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
+      }
+    }
+  }
+
   dropAction(event: CdkDragDrop<Action[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -57,18 +83,6 @@ export class RuleEditComponent implements OnInit {
     }
   }
 
-  dropCondition(event: CdkDragDrop<Condition[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      copyArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
-  }
 
   constructor(
     private router: Router,

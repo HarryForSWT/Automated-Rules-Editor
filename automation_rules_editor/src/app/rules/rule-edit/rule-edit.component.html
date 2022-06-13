@@ -30,6 +30,7 @@
   <div class="conditions-container">
     <mat-label>Conditions</mat-label>
     <div cdkDropListGroup>
+      <!-- Possible Conditions -->
       <div 
         cdkDropList
         cdkDropListOrientation="horizontal"
@@ -37,19 +38,21 @@
         #possibleActionsList="cdkDropList"
         [cdkDropListData]="possibleConditions"
         class="condition-list"
-        (cdkDropListDropped)="dropCondition($event)">
+        id="droplist-possible-conditions">
         <div class="condition-box" *ngFor="let item of possibleConditions" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
           {{item.name}}
         </div>
       </div>
+      <!-- Chosen Conditions -->
       <div
+        *ngFor="let conditionBlock of chosenConditionsMulti"
         cdkDropList
         #chosenActionsList="cdkDropList"
-        [cdkDropListData]="chosenConditions"
+        [cdkDropListData]="chosenConditionsMulti[chosenConditionsMulti.indexOf(conditionBlock)]"
         class="condition-list chosen"
         (cdkDropListDropped)="dropCondition($event)">
-        <div class="condition-box chosen" *ngFor="let item of chosenConditions" cdkDrag>
+        <div class="condition-box chosen" *ngFor="let item of chosenConditionsMulti[chosenConditionsMulti.indexOf(conditionBlock)]" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
           <div class="action-params" *ngIf="item.name==='existence'">
             <strong>Check for Existence</strong>
