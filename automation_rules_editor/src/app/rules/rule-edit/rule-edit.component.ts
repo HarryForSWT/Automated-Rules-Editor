@@ -20,10 +20,9 @@ export class RuleEditComponent implements OnInit {
   ruleName = "";
   ruleDesc = "";
   ruleData: Rule;
-  chosenConditionsMulti: Condition[][] = [[new Condition(0, "existence", false, [], true), new Condition(2, "regex", false, [], true)], [new Condition(5, "prefix", false, [], true)], [new Condition(5, "comparison", false, [], true)]];
   chosenConditions: Condition[] = [];
   chosenActions: Action[] = [];
-  conditionBlocks = ["Block1", "Block2", "Block3"];
+  chosenConditionsMap = new Map<String, Condition[]>();
 
   tags: string[] = [];
   addOnBlur = true;
@@ -87,7 +86,11 @@ export class RuleEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private rulesService: RulesService) {}
+    private rulesService: RulesService) {
+      this.chosenConditionsMap.set("Block1", [new Condition(0, "existence", false, [], true), new Condition(2, "regex", false, [], true)]);
+      this.chosenConditionsMap.set("Block2", [new Condition(5, "prefix", false, [], true)]);
+      this.chosenConditionsMap.set("Block3", [new Condition(5, "comparison", false, [], true)]);
+    }
   title: string;
   isNewRule: boolean;
 

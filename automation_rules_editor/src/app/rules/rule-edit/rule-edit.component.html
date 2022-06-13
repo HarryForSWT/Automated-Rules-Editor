@@ -46,13 +46,13 @@
       </div>
       <!-- Chosen Conditions -->
       <div
-        *ngFor="let conditionBlock of chosenConditionsMulti"
+        *ngFor="let conditionBlock of chosenConditionsMap.keys()"
         cdkDropList
         #chosenActionsList="cdkDropList"
-        [cdkDropListData]="chosenConditionsMulti[chosenConditionsMulti.indexOf(conditionBlock)]"
+        [cdkDropListData]="chosenConditionsMap.get(conditionBlock)"
         class="condition-list chosen"
         (cdkDropListDropped)="dropCondition($event)">
-        <div class="condition-box chosen" *ngFor="let item of chosenConditionsMulti[chosenConditionsMulti.indexOf(conditionBlock)]" cdkDrag>
+        <div class="condition-box chosen" *ngFor="let item of chosenConditionsMap.get(conditionBlock)" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
           <div class="condition-params" *ngIf="item.name==='existence'">
             <strong>Check for Existence</strong>
