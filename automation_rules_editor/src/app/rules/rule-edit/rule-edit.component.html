@@ -52,6 +52,7 @@
         [cdkDropListData]="chosenConditionsMap.get(conditionBlock)"
         class="condition-list chosen"
         (cdkDropListDropped)="dropCondition($event)">
+        <div class="empty-placeholder" *ngIf="chosenConditionsMap.get(conditionBlock).length == 0"><i class="fa-solid fa-plus"></i></div>
         <div class="condition-box chosen" *ngFor="let item of chosenConditionsMap.get(conditionBlock)" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
           <div class="condition-params" *ngIf="item.name==='existence'">
