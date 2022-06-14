@@ -146,11 +146,16 @@ export class RuleEditComponent implements OnInit {
 
   saveAndBack() {
     // if new Rule is created, a new Rule object first must be initialized
+    let nowDate = new Date();
+    let offset = nowDate.getTimezoneOffset();
+    nowDate = new Date(nowDate.getTime() - (offset*60*1000));
+    let nowString = nowDate.toISOString().slice(0, 16);
+
     if(this.isNewRule) {
-      let now = new Date().toString();
-      this.ruleData = new Rule(55, "", "", this.tags, ["Mike", now], ["Mike", now], [], []);
+      this.ruleData = new Rule(55, "", "", this.tags, ["Mike", nowString], ["Mike", nowString], [], []);
     }
     // bring rules back into JSON format
+    this.ruleData.last_edit = ["Jan", nowString];
     this.ruleData.actions = [];
     this.chosenActions.forEach(a => {
       this.ruleData.actions.push([a.name, a.params]);
