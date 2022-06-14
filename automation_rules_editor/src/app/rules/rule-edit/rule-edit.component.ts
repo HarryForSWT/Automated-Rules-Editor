@@ -23,6 +23,8 @@ export class RuleEditComponent implements OnInit {
   chosenConditions: Condition[] = [];
   chosenActions: Action[] = [];
   chosenConditionsMap = new Map<String, Condition[]>();
+  deletedConditions: Condition[] = [];
+  deletedActions: Action[] = [];
 
   tags: string[] = [];
   addOnBlur = true;
@@ -69,6 +71,15 @@ export class RuleEditComponent implements OnInit {
     }
   }
 
+  deleteCondition(event: CdkDragDrop<Condition[]>) {
+    transferArrayItem(
+      event.previousContainer.data,
+      this.deletedConditions,
+      event.previousIndex,
+      event.currentIndex
+    );
+  }
+
   dropAction(event: CdkDragDrop<Action[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -80,6 +91,15 @@ export class RuleEditComponent implements OnInit {
         event.currentIndex,
       );
     }
+  }
+
+  deleteAction(event: CdkDragDrop<Action[]>) {
+    transferArrayItem(
+      event.previousContainer.data,
+      this.deletedActions,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 
 

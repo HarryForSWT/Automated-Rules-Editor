@@ -38,6 +38,7 @@
         #possibleActionsList="cdkDropList"
         [cdkDropListData]="possibleConditions"
         class="condition-list"
+        (cdkDropListDropped)="deleteCondition($event)"
         id="droplist-possible-conditions">
         <div class="condition-box" *ngFor="let item of possibleConditions" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
@@ -112,7 +113,8 @@
         cdkDropListSortingDisabled 
         #possibleActionsList="cdkDropList"
         [cdkDropListData]="possibleActions" 
-        class="action-list">
+        class="action-list"
+        (cdkDropListDropped)="deleteAction($event)">
         <div class="action-box" *ngFor="let item of possibleActions" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
           {{item.name}}
