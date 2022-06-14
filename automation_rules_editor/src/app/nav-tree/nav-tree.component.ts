@@ -1,6 +1,7 @@
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {Component} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+import { RulesService } from '../rules/rules.service';
 
 /**
  * Food data with nested structure.
@@ -90,6 +91,7 @@ interface FilesFlatNode {
   styleUrls: ['./nav-tree.component.scss']
 })
 export class NavTreeComponent {
+  
  
   private _transformer = (node: FileStructure, level: number) => {
     return {
@@ -113,7 +115,7 @@ export class NavTreeComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor() {
+  constructor(private rulesService: RulesService) {
     this.dataSource.data = TREE_DATA;
   }
 

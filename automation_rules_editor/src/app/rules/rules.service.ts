@@ -11,14 +11,21 @@ export class RulesService {
   private today: Date = new Date();
   private isNewRule: boolean;
   private rulesData: Rule[] = [];
+  private tags = new Set<string>();
   constructor(private http: HttpClient) {
     this.http.get<any>('./assets/rules.json').subscribe(data => {
       data.forEach(e => {
         let rule: Rule = new Rule(e.id, e.name, e.desc, e.categories, e.created, e.last_edit, e.conditions, e.actions);
         this.rulesData.push(rule);
+        rule.categories.forEach(element => {
+          this.tags.add(element);
+        });
       });
-      console.log(this.rulesData);
     });
+  }
+
+  public getTags() {
+    return this.tags;
   }
 
   getRandomEmployee(){
