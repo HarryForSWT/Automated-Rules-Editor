@@ -7,7 +7,7 @@
         "created": ["Max", "2020-06-25T12:20"],
         "last_edit": ["Lara", "2021-04-14T13:12"],
         "conditions": [
-            ["checkType", false, ["item", "invoice"]]
+            ["comparison", false, ["item", "=", "invoice"]]
         ],
         "actions": [
             ["changeValue", ["main_bank_account", "-", "total_gross"]]
@@ -21,7 +21,7 @@
         "created": ["Michael", "2020-06-25T12:20"],
         "last_edit": ["Lara", "2021-04-14T13:12"],
         "conditions": [
-            ["checkContains", true, ["field_id", "€", "$"]]
+            ["checkContains", true, ["field_id", "€, $"]]
         ],
         "actions": [
             ["changeValue", ["input_field", "REM", "€"]]
@@ -35,7 +35,7 @@
         "created": ["Mike", "2022-04-25T12:20"],
         "last_edit": ["Lara", "2022-04-28T13:12"],
         "conditions": [
-            ["checkRegex", true, ["date", "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)"]]
+            ["regex", true, ["date", "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)"]]
         ],
         "actions": [
             ["setRegex", ["date", "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)"]]
@@ -49,7 +49,7 @@
         "created": ["Mike", "2022-04-03T12:20"],
         "last_edit": ["Martin", "2022-04-14T13:12"],
         "conditions": [
-            ["checkMultiple", true, ["invoice numbers"]]
+            ["checkMultiple", true, ["invoice_number"]]
         ],
         "actions": [
             ["warning", ["Multiple invoice numbers are present!", "Informational"]]
@@ -63,7 +63,7 @@
         "created": ["Sandra", "2020-08-17T15:20"],
         "last_edit": ["Martin", "2021-12-14T13:38"],
         "conditions": [
-            ["checkExistence", false, ["delivery_date"]]
+            ["existence", false, ["delivery_date"]]
         ],
         "actions": [
             ["changeValue", ["delivery_date", "=", "invoice_date"]]
@@ -77,7 +77,7 @@
         "created": ["Sandra", "2019-08-17T15:20"],
         "last_edit": ["Martin", "2021-12-14T13:38"],
         "conditions": [
-            ["compareGreaterThanFixed", true, ["total_gross", "1000€"]]
+            ["comparison", true, ["total_gross", ">", "1000€"]]
         ],
         "actions": [
             ["addAttribute", ["approval", "approval_needed"]]
@@ -91,7 +91,7 @@
         "created": ["Martin", "2019-09-21T15:20"],
         "last_edit": ["Mike", "2021-08-06T15:38"],
         "conditions": [
-            ["compareLessThanVar", true, ["field_one_id", "field_two_id", "1.5cm"]]
+            ["comparison", true, ["field_one_id", "<", "field_two_id", "1.5cm"]]
         ],
         "actions": [
             ["changeValue", ["b", "=", "a"]], 
@@ -106,7 +106,7 @@
         "created": ["Sandra", "2020-09-03T08:20"],
         "last_edit": ["Mike", "2021-08-06T12:46"],
         "conditions": [
-            ["compareLessThanVar", true, ["a", "b", "10%"]]
+            ["comparison", true, ["a", "<", "b", "10%"]]
         ],
         "actions": [
             ["warning", ["Values differ too much!", "Critical"]]
@@ -120,7 +120,7 @@
         "created": ["Thomas", "2018-09-27T11:20"],
         "last_edit": ["Mike", "2020-06-06T14:46"],
         "conditions": [
-            ["checkExistence", false, ["color"]]
+            ["existence", false, ["color"]]
         ],
         "actions": [
             ["changeValue", ["color", "Mandel"]]

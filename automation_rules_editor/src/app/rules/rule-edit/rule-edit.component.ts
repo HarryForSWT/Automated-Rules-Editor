@@ -37,7 +37,9 @@ export class RuleEditComponent implements OnInit {
     new Condition(1, 'checkedFilled', false, [], false),
     new Condition(2, 'comparison', false, [], false),
     new Condition(3, 'prefix', false, [], false),
-    new Condition(4, 'regex', false, [], false)];
+    new Condition(4, 'regex', false, [], false),
+    new Condition(5, 'checkMultiple', false, [], false),
+    new Condition(6, 'checkContains', false, [], false)];
 
   possibleActions = [
     new Action(0, 'changeValue', [], false),

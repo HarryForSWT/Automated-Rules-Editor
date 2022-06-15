@@ -16,4 +16,11 @@ export class ConditionNode {
     public addCondition(condition: Condition) {
         this.conditions.push(condition);
     }
+
+    public hasChildren(): boolean {
+        if(this.children.length > 0) {
+            return true;
+        }
+        return false;
+    }
 }
