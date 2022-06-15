@@ -7,7 +7,7 @@
         "created": ["Max", "2020-06-25T12:20"],
         "last_edit": ["Lara", "2021-04-14T13:12"],
         "conditions": [
-            ["checkType", true, ["item", "invoice"]]
+            ["checkType", false, ["item", "invoice"]]
         ],
         "actions": [
             ["changeValue", ["main_bank_account", "-", "total_gross"]]

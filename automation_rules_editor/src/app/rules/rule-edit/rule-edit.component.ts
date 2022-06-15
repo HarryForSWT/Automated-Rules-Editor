@@ -8,6 +8,7 @@ import { Rule } from '../rule.module';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, copyArrayItem} from '@angular/cdk/drag-drop';
 import { Action } from './action.module';
 import { Condition } from './condition.module';
+import { ConditionNode } from './conditionNode.module';
 
 @Component({
   selector: 'app-rule-edit',
@@ -23,6 +24,7 @@ export class RuleEditComponent implements OnInit {
   chosenConditions: Condition[] = [];
   chosenActions: Action[] = [];
   chosenConditionsMap = new Map<String, Condition[]>();
+  conditionsRootNode: ConditionNode = new ConditionNode([], []);
   deletedConditions: Condition[] = [];
   deletedActions: Action[] = [];
 
@@ -130,18 +132,39 @@ export class RuleEditComponent implements OnInit {
       this.ruleName = this.ruleData.name;
       this.ruleDesc = this.ruleData.desc;
 
+      // Get chosen action from ruleData
       this.ruleData.actions.forEach(a => {
         let action = new Action(0, a[0], a[1], true);
         this.chosenActions.push(action);
       })
+
+      this.conditionsRootNode = this.parseConditions(this.ruleData.conditions, this.conditionsRootNode);
+      console.log(this.conditionsRootNode);
     }
 
     this.signupForm = new FormGroup({
       'ruleName' : new FormControl(null),
       'tags': new FormArray([])
     });
+  }
 
-    
+  parseConditions (conditionData: any[], conditionNode: ConditionNode): ConditionNode {
+      if(Array.isArray(conditionData[0])) {
+        let condition = new Condition(1, conditionData[0][0], conditionData[0][1], conditionData[0][2], true);
+        conditionNode.addCondition(condition);
+      } else {
+        if (conditionData[0] == "AND") {
+          for (let i = 1; i < conditionData.length; i++) {
+            conditionNode.addCondition(new Condition(1, conditionData[i][0], conditionData[i][1], conditionData[i][2], true));
+          }
+        }
+        if (conditionData[0] == "OR") {
+          for (let i = 1; i < conditionData.length; i++) {
+            conditionNode.addChild(this.parseConditions(conditionData[i], new ConditionNode([], [])));
+          }
+        }
+      }
+    return conditionNode;
   }
 
   saveAndBack() {
