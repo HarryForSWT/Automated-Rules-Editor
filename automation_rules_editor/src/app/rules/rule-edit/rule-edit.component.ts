@@ -151,13 +151,19 @@ export class RuleEditComponent implements OnInit {
   }
 
   parseConditions (conditionData: any[], conditionNode: ConditionNode): ConditionNode {
-      if(Array.isArray(conditionData[0])) {
+      if((conditionData[0] != "OR") && (conditionData[0] != "AND")) {
         let condition = new Condition(1, conditionData[0][0], conditionData[0][1], conditionData[0][2], true);
         conditionNode.addCondition(condition);
       } else {
         if (conditionData[0] == "AND") {
           for (let i = 1; i < conditionData.length; i++) {
-            conditionNode.addCondition(new Condition(1, conditionData[i][0], conditionData[i][1], conditionData[i][2], true));
+            if(conditionData[i][0] == "OR") {
+              for (let j = 1; j < conditionData[i].length; j++) {
+                conditionNode.addChild(this.parseConditions([conditionData[i][j]], new ConditionNode([], [])));
+              }
+            } else {
+              conditionNode.addCondition(new Condition(1, conditionData[i][0], conditionData[i][1], conditionData[i][2], true));
+            }
           }
         }
         if (conditionData[0] == "OR") {

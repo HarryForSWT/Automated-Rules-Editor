@@ -169,12 +169,13 @@
         "last_edit": ["Martin", "2021-08-06T09:48"],
         "conditions": [
             "AND",
+            ["compareLessThanVar", true, ["a", "b", "10%"]],
             ["OR",
                 ["checkedFilled", true, ["checkbox_a"]],
                 ["checkedFilled", true, ["checkbox_b"]],
                 ["checkedFilled", true, ["checkbox_c"]]
-            ],
-            ["compareLessThanVar", true, ["a", "b", "10%"]]
+            ]
+            
         ],
         "actions": [
             ["warning", ["Example Warning", "Informational"]]
