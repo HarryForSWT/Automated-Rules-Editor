@@ -15,7 +15,8 @@ export class RuleItemComponent implements OnInit {
   ruleName: string;
   ruleDesc: string;
   details:boolean= false;
-  categories: string = " ";
+  categories: string[] = [];
+  //categories: string = " ";
   employeeCreate: string;
   timeCreate: string;
   employeeEdit: String;
@@ -35,7 +36,8 @@ export class RuleItemComponent implements OnInit {
     this.timeNow = this.rulesService.getEditDate();
     this.ruleDesc = this.rule.desc;
     this.ruleName = this.rule.name;
-    this.categories = this.rule.categories.join(", ")
+    this.categories = this.rule.categories;
+    //this.categories = this.rule.categories.join(", ")
 
     // this.route.params
     //   .subscribe(

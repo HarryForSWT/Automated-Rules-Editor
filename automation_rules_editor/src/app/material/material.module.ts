@@ -8,6 +8,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
+
+import {DragDropModule} from '@angular/cdk/drag-drop';
 const MaterialComponents = 
 [MatButtonModule,
   MatSidenavModule,
@@ -17,7 +19,9 @@ const MaterialComponents =
   MatInputModule,
   MatTooltipModule,
   MatChipsModule,
-  MatTreeModule];
+  MatTreeModule,
+  DragDropModule
+];
 
 @NgModule({
   

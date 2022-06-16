@@ -29,8 +29,7 @@ export class RuleEditComponent implements OnInit {
   deletedActions: Action[] = [];
 
   tags: string[] = [];
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  
 
   possibleConditions = [
     new Condition(0, 'existence', false, [], false),
@@ -203,12 +202,16 @@ export class RuleEditComponent implements OnInit {
     this.router.navigate(['/'],{relativeTo: this.route});
   }
 
+  
+  //for the Angular material chips
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
     if (value) {
-      this.tags.push(value);
+      this.tags.push(' '+value);
     }
 
     // Clear the input value

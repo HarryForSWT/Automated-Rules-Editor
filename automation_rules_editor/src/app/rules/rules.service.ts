@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RulesService {
-  private employees = ['Harry', 'Ron', 'Hermione'];
   private today: Date = new Date();
   private isNewRule: boolean;
   private rulesData: Rule[] = [];
@@ -26,11 +25,6 @@ export class RulesService {
 
   public getTags() {
     return this.tags;
-  }
-
-  getRandomEmployee(){
-    var randomNumber = Math.floor(Math.random()*this.employees.length);
-    return this.employees[randomNumber];
   }
 
   getEditDate(){

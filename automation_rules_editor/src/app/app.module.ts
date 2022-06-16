@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +31,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MaterialModule,
     AppRoutingModule,
     HttpClientModule,
-    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
