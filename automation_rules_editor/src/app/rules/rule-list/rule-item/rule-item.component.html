@@ -20,7 +20,7 @@
             <p><strong>Created by: </strong>{{employeeCreate}} ({{timeCreate}})</p>
             <p><strong>Categories: </strong>{{categories}}</p>
             <button mat-stroked-button color="primary" (click)="onRuleEdit()" id="edit"><mat-icon>edit</mat-icon>Edit</button>
-            <button mat-flat-button color="warn" id="delete"><mat-icon>delete</mat-icon>Delete</button>
+            <button mat-flat-button color="warn" id="delete" (click)="onRuleDelete()"><mat-icon>delete</mat-icon>Delete</button>
         </div>
     </div>
 </div>

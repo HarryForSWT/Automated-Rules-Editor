@@ -62,5 +62,7 @@ export class RulesService {
     }
     console.log(this.rulesData);
   }
-  
+  deleteRule(ruleIndex: number){
+    this.rulesData.splice(ruleIndex,1);
+  }
 }
