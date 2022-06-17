@@ -55,6 +55,6 @@ export class RuleItemComponent implements OnInit {
     this.router.navigate([this.id,'edit'], {relativeTo:this.route});
   }
   onRuleDelete(){
-    this.rulesService.deleteRule(this.ruleIndex);
+    this.rulesService.deleteRule(this.rule.id);
   }
 }
