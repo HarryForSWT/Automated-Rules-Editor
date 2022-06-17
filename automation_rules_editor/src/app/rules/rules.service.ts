@@ -32,6 +32,7 @@ export class RulesService {
   }
 
   getRulelist(){
+    console.log(this.rulesData);
     return this.rulesData;
   }
   getRuleItem(id: number){
@@ -56,12 +57,14 @@ export class RulesService {
 
   saveRule(id:number, rule: Rule, newRule: boolean){
     if(newRule) {
+      rule.id = this.rulesData.length;
       this.rulesData.push(rule);
     } else {
-      this.rulesData[id-1] = rule;
+      this.rulesData[rule.id] = rule;
     }
     console.log(this.rulesData);
   }
+
   deleteRule(ruleIndex: number){
     this.rulesData.splice(ruleIndex,1);
   }
