@@ -110,13 +110,7 @@ export class RuleEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private rulesService: RulesService) {
-      this.chosenConditionsMap.set("Block1", [new Condition(0, "existence", false, [], true), new Condition(2, "regex", false, [], true)]);
-      this.chosenConditionsMap.set("Block2", [new Condition(5, "prefix", false, [], true)]);
-      this.chosenConditionsMap.set("Block3", []);
-      this.chosenConditionsMap.set("Block4", []);
-      this.chosenConditionsMap.set("Block5", []);
-      this.chosenConditionsMap.set("Block6", []);
-      this.chosenConditionsMap.set("Block7", []);
+      
     }
   title: string;
   isNewRule: boolean;
@@ -143,7 +137,15 @@ export class RuleEditComponent implements OnInit {
       })
 
       this.conditionsRootNode = this.parseConditions(this.ruleData.conditions, this.conditionsRootNode);
-      console.log(this.conditionsRootNode);
+
+      this.chosenConditionsMap.set("Block1", [new Condition(0, "existence", false, [], true), new Condition(2, "regex", false, [], true)]);
+      this.chosenConditionsMap.set("Block2", [new Condition(5, "prefix", false, [], true)]);
+      this.chosenConditionsMap.set("Block3", []);
+      this.chosenConditionsMap.set("Block4", []);
+      this.chosenConditionsMap.set("Block5", []);
+      this.chosenConditionsMap.set("Block6", []);
+      this.chosenConditionsMap.set("Block7", []);
+
     }
 
     this.signupForm = new FormGroup({

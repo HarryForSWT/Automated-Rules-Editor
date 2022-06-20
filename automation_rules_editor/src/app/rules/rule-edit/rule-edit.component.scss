@@ -81,36 +81,36 @@ h2{
   width: 100%;
 }
 
-#cdk-drop-list-3 {
+.condition-list.chosen:nth-child(2) {
   grid-area: chosen_a;
 }
 
-#cdk-drop-list-4 {
+.condition-list.chosen:nth-child(3) {
   width: 95%;
   grid-area: chosen_b;
 }
 
-#cdk-drop-list-5 {
+.condition-list.chosen:nth-child(4) {
   width: 90%;
   grid-area: chosen_b_placeholder_1;
 }
 
-#cdk-drop-list-6 {
+.condition-list.chosen:nth-child(5) {
   width: 90%;
   grid-area: chosen_b_placeholder_2;
 }
 
-#cdk-drop-list-7 {
+.condition-list.chosen:nth-child(6) {
   width: 95%;
   grid-area: chosen_c;
 }
 
-#cdk-drop-list-9 {
+.condition-list.chosen:nth-child(7) {
   width: 90%;
   grid-area: chosen_c_placeholder_1;
 }
 
-#cdk-drop-list-8 {
+.condition-list.chosen:nth-child(8) {
   width: 90%;
   grid-area: chosen_c_placeholder_2;
 }
