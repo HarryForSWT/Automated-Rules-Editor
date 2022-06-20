@@ -142,7 +142,7 @@ export class RuleEditComponent implements OnInit {
       this.chosenConditionsMap.set("Block2", [new Condition(5, "prefix", false, [], true)]);
       this.chosenConditionsMap.set("Block3", []);
       this.chosenConditionsMap.set("Block4", []);
-      this.chosenConditionsMap.set("Block5", []);
+      this.chosenConditionsMap.set("Block5", [new Condition(5, "checkContains", false, [], true)]);
       this.chosenConditionsMap.set("Block6", []);
       this.chosenConditionsMap.set("Block7", []);
 
