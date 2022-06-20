@@ -29,7 +29,7 @@
   <!-- Drag&Drop for Conditions -->
   <div class="conditions-container">
     <mat-label>Conditions</mat-label>
-    <div cdkDropListGroup>
+    <div cdkDropListGroup class="conditions-droplist-group">
       <!-- Possible Conditions -->
       <div 
         cdkDropList
@@ -212,9 +212,9 @@
         [cdkDropListData]="chosenActions"
         class="action-list chosen"
         (cdkDropListDropped)="dropAction($event)">
+        <div class="empty-placeholder" *ngIf="chosenActions.length == 0"><i class="fa-solid fa-plus"></i></div>
         <div class="action-box chosen" *ngFor="let item of chosenActions" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
-
           <div class="action-params" *ngIf="item.name==='changeValue'">
             <strong>Change Value</strong>
             <br>

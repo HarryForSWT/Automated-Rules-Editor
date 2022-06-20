@@ -112,8 +112,11 @@ export class RuleEditComponent implements OnInit {
     private rulesService: RulesService) {
       this.chosenConditionsMap.set("Block1", [new Condition(0, "existence", false, [], true), new Condition(2, "regex", false, [], true)]);
       this.chosenConditionsMap.set("Block2", [new Condition(5, "prefix", false, [], true)]);
-      this.chosenConditionsMap.set("Block3", [new Condition(5, "comparison", false, [], true)]);
+      this.chosenConditionsMap.set("Block3", []);
       this.chosenConditionsMap.set("Block4", []);
+      this.chosenConditionsMap.set("Block5", []);
+      this.chosenConditionsMap.set("Block6", []);
+      this.chosenConditionsMap.set("Block7", []);
     }
   title: string;
   isNewRule: boolean;
