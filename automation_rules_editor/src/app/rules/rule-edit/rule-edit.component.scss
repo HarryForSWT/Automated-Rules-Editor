@@ -71,7 +71,7 @@ h2{
   align-items: center;
   height: auto;
   width: 100%;
-  gap: 5px;
+  gap: 10px;
 }
 
 .condition-box.chosen {
@@ -87,8 +87,13 @@ h2{
   width: 100%;
 }
 
+.condition-list.chosen.children {
+  display:block;
+}
+
 .condition-list.chosen.root {
   grid-area: chosen_and;
+  display:block;
 }
 
 #chosen-conditions-child-0 {

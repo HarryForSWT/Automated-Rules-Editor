@@ -146,6 +146,10 @@ export class RuleEditComponent implements OnInit {
       this.chosenConditionsMap.set("Block6", []);
       this.chosenConditionsMap.set("Block7", []);
 
+      console.log(this.conditionsRootNode);
+      console.log(this.getGridAreasNode(this.conditionsRootNode));
+      console.log(this.getGridAreasChildren(this.conditionsRootNode));
+
     }
 
     this.signupForm = new FormGroup({
@@ -229,6 +233,50 @@ export class RuleEditComponent implements OnInit {
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+  }
+
+  getGridAreasNode(node: ConditionNode) {
+    let nodeRow = '"chosen_and';
+    
+    for (let i = 0; i < node.children.length; i++) {
+      nodeRow = nodeRow.concat(" chosen_and");
+    }
+    nodeRow = nodeRow.concat('"');
+    return nodeRow;
+  }
+
+  getGridAreasChildren(node: ConditionNode) {
+    // ugly method, but works for now
+    
+    switch (node.children.length) {
+      case 0:
+        return "";
+      case 1:
+        return '"chosen_or_1"';
+      case 2:
+        return '"chosen_or_1 chosen_or_2"';
+      case 3:
+        return '"chosen_or_1 chosen_or_2 chosen_or_3"';
+      default:
+        return '"chosen_or_1 chosen_or_2 chosen_or_3 chosen_or_4"';
+    }
+    // seems to be too resource-hungry for browser
+    /*
+    let childrenRow = '"';
+    for (let i = 0; i < node.children.length; i++) {
+      if (i = 0) {
+        childrenRow = childrenRow.concat(`chosen_or_${i}`);
+      } else {
+        childrenRow = childrenRow.concat(` chosen_or_${i}`);
+      }
+    }
+    childrenRow = childrenRow.concat('"');
+    if (node.children.length != 0) {
+      return childrenRow;
+    }
+    return "";
+    */
+    
   }
 
  

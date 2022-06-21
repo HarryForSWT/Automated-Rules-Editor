@@ -47,12 +47,14 @@
       </div>
       <!-- Chosen Conditions -->
       <!-- Chosen Conditions directly in rootNode-->
-      <div class="chosen-conditions">
+      <div class="chosen-conditions"
+      >
         <div class="condition-list chosen root"
         cdkDropList
         #possibleActionsList="cdkDropList"
         [cdkDropListData]="conditionsRootNode.conditions"
-        (cdkDropListDropped)="dropCondition($event)">
+        (cdkDropListDropped)="dropCondition($event)"
+        style="grid-area: chosen_and;">
         <div class="empty-placeholder" *ngIf="conditionsRootNode.conditions.length == 0"><i class="fa-solid fa-plus"></i></div>
         <div class="condition-box chosen" *ngFor="let item of conditionsRootNode.conditions" cdkDrag>
           <div class="drag-placeholder" *cdkDragPlaceholder></div>
@@ -120,7 +122,8 @@
             cdkDropList
             #possibleActionsList="cdkDropList"
             [cdkDropListData]="child.conditions"
-            (cdkDropListDropped)="dropCondition($event)">
+            (cdkDropListDropped)="dropCondition($event)"
+            [ngStyle]="{'grid-area': 'chosen_or_'+ conditionsRootNode.children.indexOf(child)}">
           <div class="empty-placeholder" *ngIf="child.conditions.length == 0"><i class="fa-solid fa-plus"></i></div>
           <div class="condition-box chosen" *ngFor="let item of child.conditions" cdkDrag>
             <div class="drag-placeholder" *cdkDragPlaceholder></div>

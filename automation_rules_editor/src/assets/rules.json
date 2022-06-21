@@ -192,7 +192,7 @@
             "OR",
             ["AND", 
                 ["checkedFilled", true, ["checkbox_a"]],
-                ["checkPrefix", true, ["customer_number", "000"]]
+                ["prefix", true, ["customer_number", "000"]]
             ],
             ["AND",
                 ["checkedFilled", false, ["checkbox_b"]],
