@@ -238,7 +238,7 @@ export class RuleEditComponent implements OnInit {
   getGridAreasNode(node: ConditionNode) {
     let nodeRow = '"chosen_and';
     
-    for (let i = 0; i < node.children.length; i++) {
+    for (let i = 1; i < node.children.length; i++) {
       nodeRow = nodeRow.concat(" chosen_and");
     }
     nodeRow = nodeRow.concat('"');
@@ -246,37 +246,16 @@ export class RuleEditComponent implements OnInit {
   }
 
   getGridAreasChildren(node: ConditionNode) {
-    // ugly method, but works for now
-    
-    switch (node.children.length) {
-      case 0:
-        return "";
-      case 1:
-        return '"chosen_or_1"';
-      case 2:
-        return '"chosen_or_1 chosen_or_2"';
-      case 3:
-        return '"chosen_or_1 chosen_or_2 chosen_or_3"';
-      default:
-        return '"chosen_or_1 chosen_or_2 chosen_or_3 chosen_or_4"';
-    }
-    // seems to be too resource-hungry for browser
-    /*
-    let childrenRow = '"';
+    var childrenRowArray = [];
+    childrenRowArray.push('"')
     for (let i = 0; i < node.children.length; i++) {
-      if (i = 0) {
-        childrenRow = childrenRow.concat(`chosen_or_${i}`);
-      } else {
-        childrenRow = childrenRow.concat(` chosen_or_${i}`);
-      }
+      childrenRowArray.push(`chosen_or_${i}`);
     }
-    childrenRow = childrenRow.concat('"');
+    childrenRowArray.push('"')
     if (node.children.length != 0) {
-      return childrenRow;
+      return childrenRowArray.join(" ");
     }
     return "";
-    */
-    
   }
 
  

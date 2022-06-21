@@ -48,7 +48,7 @@
       <!-- Chosen Conditions -->
       <!-- Chosen Conditions directly in rootNode-->
       <div class="chosen-conditions"
-      >
+      [ngStyle]="{'grid-template-areas': getGridAreasNode(conditionsRootNode) + getGridAreasChildren(conditionsRootNode)}">
         <div class="condition-list chosen root"
         cdkDropList
         #possibleActionsList="cdkDropList"
@@ -65,7 +65,7 @@
             <input type="text" value="{{item.params[0]}}" placeholder="field to check">
           </div>
           <div class="condition-params" *ngIf="item.name==='checkedFilled'">
-            <strong>Check if Checked or Filled</strong>
+            <strong>Checked or Filled</strong>
             <br>
             <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
             <input type="text" value="{{item.params[0]}}" placeholder="field to check">
@@ -128,13 +128,13 @@
           <div class="condition-box chosen" *ngFor="let item of child.conditions" cdkDrag>
             <div class="drag-placeholder" *cdkDragPlaceholder></div>
             <div class="condition-params" *ngIf="item.name==='existence'">
-              <strong>Check for Existence</strong>
+              <strong>Existence</strong>
               <br>
               <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
               <input type="text" value="{{item.params[0]}}" placeholder="field to check">
             </div>
             <div class="condition-params" *ngIf="item.name==='checkedFilled'">
-              <strong>Check if Checked or Filled</strong>
+              <strong>Checked or Filled</strong>
               <br>
               <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
               <input type="text" value="{{item.params[0]}}" placeholder="field to check">

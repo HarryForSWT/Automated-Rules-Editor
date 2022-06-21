@@ -66,7 +66,6 @@ h2{
 
 .chosen-conditions {
   display: grid;
-  grid-template-areas: "chosen_and chosen_and" "chosen_or_1 chosen_or_2";
   justify-content: center;
   align-items: center;
   height: auto;
@@ -88,20 +87,11 @@ h2{
 }
 
 .condition-list.chosen.children {
-  display:block;
+  display:inline-block;
 }
 
 .condition-list.chosen.root {
-  grid-area: chosen_and;
-  display:block;
-}
-
-#chosen-conditions-child-0 {
-  grid-area: chosen_or_1;
-}
-
-#chosen-conditions-child-1 {
-  grid-area: chosen_or_2;
+  display:inline-block;
 }
 
 .condition-params {
@@ -111,6 +101,7 @@ h2{
 .condition-params * {
   margin: 0px 5px;
 }
+
 
 
 
