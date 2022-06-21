@@ -169,7 +169,7 @@
         "last_edit": ["Martin", "2021-08-06T09:48"],
         "conditions": [
             "AND",
-            ["compareLessThanVar", true, ["a", "b", "10%"]],
+            ["comparison", true, ["a", "b", "10%"]],
             ["OR",
                 ["checkedFilled", true, ["checkbox_a"]],
                 ["checkedFilled", true, ["checkbox_b"]],
@@ -201,6 +201,26 @@
         ],
         "actions": [
             ["warning", ["Some Warning", "Critical"]]
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Rule 14",
+        "desc": "If one of the checkboxes is checked and a and b differ by less than 10%, create a warning",
+        "categories": ["ToDo", "Formal"],
+        "created": ["Max", "2019-06-05T19:30"],
+        "last_edit": ["Martin", "2021-08-06T09:48"],
+        "conditions": [
+            "AND",
+            ["comparison", true, ["a", "b", "10%"]],
+            ["OR",
+                ["checkedFilled", true, ["checkbox_a"]],
+                ["checkedFilled", true, ["checkbox_b"]]
+            ]
+            
+        ],
+        "actions": [
+            ["warning", ["Example Warning", "Informational"]]
         ]
     }
 ]    

@@ -31,13 +31,6 @@ h2{
   vertical-align: top;
 }
 
-.conditions-droplist-group{
-  display: grid;
-  grid-template-areas: "possible possible possible possible" "chosen_a chosen_a chosen_a chosen_a" "chosen_b chosen_b chosen_c chosen_c" "chosen_b_placeholder_1 chosen_b_placeholder_2 chosen_c_placeholder_1 chosen_c_placeholder_2";
-  height: auto;
-  width: auto;
-}
-
 .condition-list {
   border: solid 1px #ccc;
   background: white;
@@ -48,6 +41,10 @@ h2{
   display: flex;
   overflow: auto;
   grid-area: possible;
+}
+
+.condition-list.possible {
+  display: flex;
 }
   
 .condition-box {
@@ -67,13 +64,22 @@ h2{
   border-radius: 2px;
 }
 
+.chosen-conditions {
+  display: grid;
+  grid-template-areas: "chosen_and chosen_and" "chosen_or_1 chosen_or_2";
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  gap: 5px;
+}
+
 .condition-box.chosen {
   width: 100%;
   margin: 2px 0px;
 }
   
 .condition-list.chosen {
-  flex-direction: column;
   border: solid 1px #ccc;
   border-radius: 0px 0px 4px 4px;
   background-color: #fff; 
@@ -81,40 +87,17 @@ h2{
   width: 100%;
 }
 
-.condition-list.chosen:nth-child(2) {
-  grid-area: chosen_a;
+.condition-list.chosen.root {
+  grid-area: chosen_and;
 }
 
-.condition-list.chosen:nth-child(3) {
-  width: 95%;
-  grid-area: chosen_b;
+#chosen-conditions-child-0 {
+  grid-area: chosen_or_1;
 }
 
-.condition-list.chosen:nth-child(4) {
-  width: 90%;
-  grid-area: chosen_b_placeholder_1;
+#chosen-conditions-child-1 {
+  grid-area: chosen_or_2;
 }
-
-.condition-list.chosen:nth-child(5) {
-  width: 90%;
-  grid-area: chosen_b_placeholder_2;
-}
-
-.condition-list.chosen:nth-child(6) {
-  width: 95%;
-  grid-area: chosen_c;
-}
-
-.condition-list.chosen:nth-child(7) {
-  width: 90%;
-  grid-area: chosen_c_placeholder_1;
-}
-
-.condition-list.chosen:nth-child(8) {
-  width: 90%;
-  grid-area: chosen_c_placeholder_2;
-}
-
 
 .condition-params {
   margin: 5px;

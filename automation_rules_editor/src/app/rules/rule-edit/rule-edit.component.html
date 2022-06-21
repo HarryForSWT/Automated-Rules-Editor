@@ -29,7 +29,7 @@
   <!-- Drag&Drop for Conditions -->
   <div class="conditions-container">
     <mat-label>Conditions</mat-label>
-    <div cdkDropListGroup class="conditions-droplist-group">
+    <div cdkDropListGroup>
       <!-- Possible Conditions -->
       <div 
         cdkDropList
@@ -37,7 +37,7 @@
         cdkDropListSortingDisabled
         #possibleActionsList="cdkDropList"
         [cdkDropListData]="possibleConditions"
-        class="condition-list"
+        class="condition-list possible"
         (cdkDropListDropped)="deleteCondition($event)"
         id="droplist-possible-conditions">
         <div class="condition-box" *ngFor="let item of possibleConditions" cdkDrag>
@@ -47,14 +47,11 @@
       </div>
       <!-- Chosen Conditions -->
       <!-- Chosen Conditions directly in rootNode-->
-      <!--
-
-      
-      <div 
+      <div class="chosen-conditions">
+        <div class="condition-list chosen root"
         cdkDropList
         #possibleActionsList="cdkDropList"
         [cdkDropListData]="conditionsRootNode.conditions"
-        class="condition-list chosen"
         (cdkDropListDropped)="dropCondition($event)">
         <div class="empty-placeholder" *ngIf="conditionsRootNode.conditions.length == 0"><i class="fa-solid fa-plus"></i></div>
         <div class="condition-box chosen" *ngFor="let item of conditionsRootNode.conditions" cdkDrag>
@@ -115,10 +112,80 @@
             <input type="text" value="{{item.params[1]}}" placeholder="field to check">
           </div>
         </div>
+        </div>
+        <!-- Iterate over children of root node -->
+        <div *ngFor="let child of conditionsRootNode.children">
+          <div class="condition-list chosen children"
+            id="chosen-conditions-child-{{conditionsRootNode.children.indexOf(child)}}"
+            cdkDropList
+            #possibleActionsList="cdkDropList"
+            [cdkDropListData]="child.conditions"
+            (cdkDropListDropped)="dropCondition($event)">
+          <div class="empty-placeholder" *ngIf="child.conditions.length == 0"><i class="fa-solid fa-plus"></i></div>
+          <div class="condition-box chosen" *ngFor="let item of child.conditions" cdkDrag>
+            <div class="drag-placeholder" *cdkDragPlaceholder></div>
+            <div class="condition-params" *ngIf="item.name==='existence'">
+              <strong>Check for Existence</strong>
+              <br>
+              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
+              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+            </div>
+            <div class="condition-params" *ngIf="item.name==='checkedFilled'">
+              <strong>Check if Checked or Filled</strong>
+              <br>
+              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
+              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+            </div>
+            <div class="condition-params" *ngIf="item.name==='comparison'">
+              <strong>Comparison</strong>
+              <br>
+              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
+              <input type="text" value="{{item.params[0]}}" placeholder="variable/field">
+              <select>
+                <option value="&gt;" [selected]="item.params[1]==='&gt;'">&gt;</option>
+                <option value="&lt;" [selected]="item.params[1]==='&lt;'">&lt;</option>
+                <option value="=" [selected]="item.params[1]==='='">=</option>
+                <option value="≥" [selected]="item.params[1]==='≥'">≥</option>
+                <option value="≤" [selected]="item.params[1]==='≤'">≤</option>
+                <option value="≠" [selected]="item.params[1]==='≠'">≠</option>
+              </select>
+              <input type="text" value="{{item.params[2]}}" placeholder="variable/field">
+              <input type="text" value="{{item.params[3]}}" placeholder="factor">
+            </div>
+            <div class="condition-params" *ngIf="item.name==='prefix'">
+              <strong>Check Prefix</strong>
+              <br>
+              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
+              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+              <input type="text" value="{{item.params[1]}}" placeholder="prefix">
+            </div>
+            <div class="condition-params" *ngIf="item.name==='regex'">
+              <strong>Check Regex</strong>
+              <br>
+              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
+              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+              <input type="text" value="{{item.params[1]}}" placeholder="regex">
+            </div>
+            <div class="condition-params" *ngIf="item.name==='checkMultiple'">
+              <strong>Check for Multiple Values</strong>
+              <br>
+              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
+              <input type="text" value="{{item.params[0]}}" placeholder="value to check">
+            </div>
+            <div class="condition-params" *ngIf="item.name==='checkContains'">
+              <strong>Check if Field Contains Value</strong>
+              <br>
+              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
+              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+              <input type="text" value="{{item.params[1]}}" placeholder="field to check">
+            </div>
+          </div>
+        </div>
+        </div>
+        
       </div>
-    -->
-
         <!-- TODO: show conditions recursively from children of rootNode and so on -->
+        <!-- Old version of Blocks: 
         <div
           *ngFor="let conditionBlock of chosenConditionsMap.keys()"
           cdkDropList
@@ -185,7 +252,8 @@
               <input type="text" value="{{item.params[1]}}" placeholder="field to check">
             </div>
           </div>
-        </div>  
+        </div> 
+        -->
     </div>
   </div>
 
