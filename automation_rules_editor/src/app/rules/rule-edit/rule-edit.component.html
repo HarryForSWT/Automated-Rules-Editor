@@ -231,6 +231,8 @@
               <option value="APP">APP</option>
             </select>
             <input type="text" [(ngModel)]="item.params[2]" placeholder="value/input field">
+            <button (click)="deleteActionClick(item)"><i class="fa-solid fa-xmark"></i></button>
+            
           </div>
 
           <div class="action-params" *ngIf="item.name==='warning'">
@@ -242,6 +244,7 @@
               <option value="Reminder">Reminder</option>
               <option value="Critical">Critical</option>
             </select>
+            <button (click)="deleteActionClick(item)"><i class="fa-solid fa-xmark"></i></button>
           </div>
 
           <div class="action-params" *ngIf="item.name==='addAttribute'">
@@ -249,6 +252,7 @@
             <br>
             <input type="text" [(ngModel)]="item.params[0]" placeholder="Attribute Name">
             <input type="text" [(ngModel)]="item.params[1]" placeholder="Value">
+            <button (click)="deleteActionClick(item)"><i class="fa-solid fa-xmark"></i></button>
           </div>
 
           <div class="action-params" *ngIf="item.name==='setRegex'">
@@ -256,12 +260,14 @@
             <br>
             <input type="text" [(ngModel)]="item.params[0]" placeholder="Variable/Field">
             <input type="text" [(ngModel)]="item.params[1]" placeholder="Regular Expression">
+            <button (click)="deleteActionClick(item)"><i class="fa-solid fa-xmark"></i></button>
           </div>
 
           <div class="action-params" *ngIf="item.name==='advancedCalculation'">
             <strong>Advanced Calculation</strong>
             <br>
             <input type="text" [(ngModel)]="item.params[0]" placeholder="Expression">
+            <button (click)="deleteActionClick(item)"><i class="fa-solid fa-xmark"></i></button>
           </div>
 
         </div>

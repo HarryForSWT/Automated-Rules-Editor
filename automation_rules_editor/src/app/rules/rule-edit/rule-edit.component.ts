@@ -138,6 +138,13 @@ export class RuleEditComponent implements OnInit {
     );
   }
 
+  deleteActionClick(action: Action) {
+    const index = this.chosenActions.indexOf(action);
+    if (index > -1) {
+      this.chosenActions.splice(index, 1);
+    }
+  }
+
 
   constructor(
     private router: Router,
