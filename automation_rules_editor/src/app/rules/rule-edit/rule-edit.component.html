@@ -1,5 +1,5 @@
 <div class="col-xs-12">
-  <h2 *ngIf="!isNewRule">Edit Rule {{ruleIndex}}</h2>
+  <h2 *ngIf="!isNewRule">Edit {{ruleName}}</h2>
   <h2 *ngIf="isNewRule">Create Rule</h2>
   <form>
     <div class="form-group">
@@ -12,7 +12,7 @@
 
     <mat-form-field class="example-chip-list" appearance="fill">
       <mat-label>Tags</mat-label>
-      <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip-list #chipList aria-label="Tag Selection">
         <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
           {{tag}}
           <button matChipRemove>
@@ -61,57 +61,57 @@
           <div class="condition-params" *ngIf="item.name==='existence'">
             <strong>Check for Existence</strong>
             <br>
-            <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-            <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+            <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
           </div>
           <div class="condition-params" *ngIf="item.name==='checkedFilled'">
             <strong>Checked or Filled</strong>
             <br>
-            <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-            <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+            <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
           </div>
           <div class="condition-params" *ngIf="item.name==='comparison'">
             <strong>Comparison</strong>
             <br>
-            <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-            <input type="text" value="{{item.params[0]}}" placeholder="variable/field">
-            <select>
-              <option value="&gt;" [selected]="item.params[1]==='&gt;'">&gt;</option>
-              <option value="&lt;" [selected]="item.params[1]==='&lt;'">&lt;</option>
-              <option value="=" [selected]="item.params[1]==='='">=</option>
-              <option value="≥" [selected]="item.params[1]==='≥'">≥</option>
-              <option value="≤" [selected]="item.params[1]==='≤'">≤</option>
-              <option value="≠" [selected]="item.params[1]==='≠'">≠</option>
+            <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="variable/field">
+            <select [(ngModel)]="item.params[1]">
+              <option value="&gt;">&gt;</option>
+              <option value="&lt;">&lt;</option>
+              <option value="=">=</option>
+              <option value="≥">≥</option>
+              <option value="≤">≤</option>
+              <option value="≠">≠</option>
             </select>
-            <input type="text" value="{{item.params[2]}}" placeholder="variable/field">
-            <input type="text" value="{{item.params[3]}}" placeholder="factor">
+            <input type="text" [(ngModel)]="item.params[2]" placeholder="variable/field">
+            <input type="text" [(ngModel)]="item.params[3]" placeholder="factor">
           </div>
           <div class="condition-params" *ngIf="item.name==='prefix'">
             <strong>Check Prefix</strong>
             <br>
-            <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-            <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-            <input type="text" value="{{item.params[1]}}" placeholder="prefix">
+            <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
+            <input type="text" [(ngModel)]="item.params[1]" placeholder="prefix">
           </div>
           <div class="condition-params" *ngIf="item.name==='regex'">
             <strong>Check Regex</strong>
             <br>
-            <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-            <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-            <input type="text" value="{{item.params[1]}}" placeholder="regex">
+            <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
+            <input type="text" [(ngModel)]="item.params[1]" placeholder="regex">
           </div>
           <div class="condition-params" *ngIf="item.name==='checkMultiple'">
             <strong>Check for Multiple Values</strong>
             <br>
-            <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-            <input type="text" value="{{item.params[0]}}" placeholder="value to check">
+            <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="value to check">
           </div>
           <div class="condition-params" *ngIf="item.name==='checkContains'">
             <strong>Check if Field Contains Value</strong>
             <br>
-            <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-            <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-            <input type="text" value="{{item.params[1]}}" placeholder="field to check">
+            <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
+            <input type="text" [(ngModel)]="item.params[1]" placeholder="field to check">
           </div>
         </div>
         </div>
@@ -130,133 +130,64 @@
             <div class="condition-params" *ngIf="item.name==='existence'">
               <strong>Existence</strong>
               <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+              <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+              <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
             </div>
             <div class="condition-params" *ngIf="item.name==='checkedFilled'">
               <strong>Checked or Filled</strong>
               <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
+              <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+              <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
             </div>
             <div class="condition-params" *ngIf="item.name==='comparison'">
               <strong>Comparison</strong>
               <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="variable/field">
-              <select>
-                <option value="&gt;" [selected]="item.params[1]==='&gt;'">&gt;</option>
-                <option value="&lt;" [selected]="item.params[1]==='&lt;'">&lt;</option>
-                <option value="=" [selected]="item.params[1]==='='">=</option>
-                <option value="≥" [selected]="item.params[1]==='≥'">≥</option>
-                <option value="≤" [selected]="item.params[1]==='≤'">≤</option>
-                <option value="≠" [selected]="item.params[1]==='≠'">≠</option>
+              <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+              <input type="text" [(ngModel)]="item.params[0]" placeholder="variable/field">
+              <select [(ngModel)]="item.params[1]">
+                <option value="&gt;">&gt;</option>
+                <option value="&lt;">&lt;</option>
+                <option value="=">=</option>
+                <option value="≥">≥</option>
+                <option value="≤">≤</option>
+                <option value="≠">≠</option>
               </select>
-              <input type="text" value="{{item.params[2]}}" placeholder="variable/field">
-              <input type="text" value="{{item.params[3]}}" placeholder="factor">
+              <input type="text" [(ngModel)]="item.params[2]" placeholder="variable/field">
+              <input type="text" [(ngModel)]="item.params[3]" placeholder="factor">
             </div>
             <div class="condition-params" *ngIf="item.name==='prefix'">
               <strong>Check Prefix</strong>
               <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-              <input type="text" value="{{item.params[1]}}" placeholder="prefix">
+              <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+              <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
+              <input type="text" [(ngModel)]="item.params[1]" placeholder="prefix">
             </div>
             <div class="condition-params" *ngIf="item.name==='regex'">
               <strong>Check Regex</strong>
               <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-              <input type="text" value="{{item.params[1]}}" placeholder="regex">
+              <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+              <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
+              <input type="text" [(ngModel)]="item.params[1]" placeholder="regex">
             </div>
             <div class="condition-params" *ngIf="item.name==='checkMultiple'">
               <strong>Check for Multiple Values</strong>
               <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="value to check">
+              <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+              <input type="text" [(ngModel)]="item.params[0]" placeholder="value to check">
             </div>
             <div class="condition-params" *ngIf="item.name==='checkContains'">
               <strong>Check if Field Contains Value</strong>
               <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-              <input type="text" value="{{item.params[1]}}" placeholder="field to check">
+              <input type="checkbox" [(ngModel)]="item.negated" tooltip="Condition Negated?">
+              <input type="text" [(ngModel)]="item.params[0]" placeholder="field to check">
+              <input type="text" [(ngModel)]="item.params[1]" placeholder="field to check">
             </div>
           </div>
         </div>
         </div>
         
       </div>
-        <!-- TODO: show conditions recursively from children of rootNode and so on -->
-        <!-- Old version of Blocks: 
-        <div
-          *ngFor="let conditionBlock of chosenConditionsMap.keys()"
-          cdkDropList
-          #chosenActionsList="cdkDropList"
-          [cdkDropListData]="chosenConditionsMap.get(conditionBlock)"
-          class="condition-list chosen"
-          (cdkDropListDropped)="dropCondition($event)">
-          <div class="empty-placeholder" *ngIf="chosenConditionsMap.get(conditionBlock).length == 0"><i class="fa-solid fa-plus"></i></div>
-          <div class="condition-box chosen" *ngFor="let item of chosenConditionsMap.get(conditionBlock)" cdkDrag>
-            <div class="drag-placeholder" *cdkDragPlaceholder></div>
-            <div class="condition-params" *ngIf="item.name==='existence'">
-              <strong>Check for Existence</strong>
-              <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-            </div>
-            <div class="condition-params" *ngIf="item.name==='checkedFilled'">
-              <strong>Check if Checked or Filled</strong>
-              <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-            </div>
-            <div class="condition-params" *ngIf="item.name==='comparison'">
-              <strong>Comparison</strong>
-              <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="variable/field">
-              <select>
-                <option value="&gt;" [selected]="item.params[1]==='&gt;'">&gt;</option>
-                <option value="&lt;" [selected]="item.params[1]==='&lt;'">&lt;</option>
-                <option value="=" [selected]="item.params[1]==='='">=</option>
-                <option value="≥" [selected]="item.params[1]==='≥'">≥</option>
-                <option value="≤" [selected]="item.params[1]==='≤'">≤</option>
-                <option value="≠" [selected]="item.params[1]==='≠'">≠</option>
-              </select>
-              <input type="text" value="{{item.params[2]}}" placeholder="variable/field">
-              <input type="text" value="{{item.params[3]}}" placeholder="factor">
-            </div>
-            <div class="condition-params" *ngIf="item.name==='prefix'">
-              <strong>Check Prefix</strong>
-              <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-              <input type="text" value="{{item.params[1]}}" placeholder="prefix">
-            </div>
-            <div class="condition-params" *ngIf="item.name==='regex'">
-              <strong>Check Regex</strong>
-              <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-              <input type="text" value="{{item.params[1]}}" placeholder="regex">
-            </div>
-            <div class="condition-params" *ngIf="item.name==='checkMultiple'">
-              <strong>Check for Multiple Values</strong>
-              <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="value to check">
-            </div>
-            <div class="condition-params" *ngIf="item.name==='checkContains'">
-              <strong>Check if Field Contains Value</strong>
-              <br>
-              <input type="checkbox" value="{{item.negated}}" tooltip="Condition Negated?">
-              <input type="text" value="{{item.params[0]}}" placeholder="field to check">
-              <input type="text" value="{{item.params[1]}}" placeholder="field to check">
-            </div>
-          </div>
-        </div> 
-        -->
+
     </div>
   </div>
 
@@ -289,48 +220,48 @@
           <div class="action-params" *ngIf="item.name==='changeValue'">
             <strong>Change Value</strong>
             <br>
-            <input type="text" value="{{item.params[0]}}" placeholder="affected variable">
-            <select id="selectedOperator">
-              <option value="+" [selected]="item.params[1]==='+'">+</option>
-              <option value="-" [selected]="item.params[1]==='-'">-</option>
-              <option value="*" [selected]="item.params[1]==='*'">*</option>
-              <option value="/" [selected]="item.params[1]==='/'">/</option>
-              <option value="=" [selected]="item.params[1]==='='">=</option>
-              <option value="REM" [selected]="item.params[1]==='REM'">REM</option>
-              <option value="APP" [selected]="item.params[1]==='APP'">APP</option>
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="affected variable">
+            <select id="selectedOperator" [(ngModel)]="item.params[1]">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">*</option>
+              <option value="/">/</option>
+              <option value="=">=</option>
+              <option value="REM">REM</option>
+              <option value="APP">APP</option>
             </select>
-            <input type="text" value="{{item.params[2]}}" placeholder="value/input field">
+            <input type="text" [(ngModel)]="item.params[2]" placeholder="value/input field">
           </div>
 
           <div class="action-params" *ngIf="item.name==='warning'">
             <strong>Warning</strong>
             <br>
-            <input type="text" value="{{item.params[0]}}" placeholder="Message">
-            <select id="selectedOperator">
-              <option value="Informational" [selected]="item.params[1]==='Informational'">Informational</option>
-              <option value="Reminder" [selected]="item.params[1]==='Reminder'">Reminder</option>
-              <option value="Critical" [selected]="item.params[1]==='Critical'">Critical</option>
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="Message">
+            <select id="selectedOperator" [(ngModel)]="item.params[1]">
+              <option value="Informational">Informational</option>
+              <option value="Reminder">Reminder</option>
+              <option value="Critical">Critical</option>
             </select>
           </div>
 
           <div class="action-params" *ngIf="item.name==='addAttribute'">
             <strong>Add Attribute</strong>
             <br>
-            <input type="text" value="{{item.params[0]}}" placeholder="Attribute Name">
-            <input type="text" value="{{item.params[1]}}" placeholder="Value">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="Attribute Name">
+            <input type="text" [(ngModel)]="item.params[1]" placeholder="Value">
           </div>
 
           <div class="action-params" *ngIf="item.name==='setRegex'">
             <strong>Apply Regular Expression</strong>
             <br>
-            <input type="text" value="{{item.params[0]}}" placeholder="Variable/Field">
-            <input type="text" value="{{item.params[1]}}" placeholder="Regular Expression">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="Variable/Field">
+            <input type="text" [(ngModel)]="item.params[1]" placeholder="Regular Expression">
           </div>
 
           <div class="action-params" *ngIf="item.name==='advancedCalculation'">
             <strong>Advanced Calculation</strong>
             <br>
-            <input type="text" value="{{item.params[0]}}" placeholder="Expression">
+            <input type="text" [(ngModel)]="item.params[0]" placeholder="Expression">
           </div>
 
         </div>
