@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // import rules from '../../assets/rules.json';
 import { Rule } from './rule.module';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,9 @@ export class RulesService {
   private rulesData: Rule[] = [];
   private tags = new Set<string>();
   constructor(private http: HttpClient) {
-    this.http.get<any>('./assets/rules.json').subscribe(data => {
+    // modified json: ./assets/modified_rules.json
+    // original json: ./assets/rules.json
+    this.http.get<any>('./assets/modified_rules.json').subscribe(data => {
       data.forEach(e => {
         let rule: Rule = new Rule(e.id, e.name, e.desc, e.categories, e.created, e.last_edit, e.conditions, e.actions);
         this.rulesData.push(rule);
@@ -67,5 +69,18 @@ export class RulesService {
 
   deleteRule(ruleIndex: number){
     this.rulesData.splice(ruleIndex,1);
+  }
+
+  sendRulesToServer() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    console.log("Sending JSON to Server.");
+    console.log(JSON.stringify(this.rulesData));
+    this.http.post<any>("/save-json", JSON.stringify(this.rulesData), httpOptions).subscribe(data => {
+      console.log(data);
+    })
   }
 }

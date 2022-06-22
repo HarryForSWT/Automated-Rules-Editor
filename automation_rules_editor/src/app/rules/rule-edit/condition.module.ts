@@ -14,6 +14,6 @@ export class Condition {
     }
 
     public getStringRepresentation() {
-        return [this.name, this.params];
+        return [this.name, this.negated, this.params];
     }
 }

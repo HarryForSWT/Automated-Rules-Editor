@@ -24,7 +24,6 @@
     "express": "^4.18.1",
     "express-http-proxy": "^1.6.3",
     "fs": "^0.0.1-security",
-    "nodemon": "^2.0.16",
     "pug": "^3.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
@@ -42,6 +41,7 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "nodemon": "^2.0.16",
     "typescript": "~4.6.2"
   }
 }

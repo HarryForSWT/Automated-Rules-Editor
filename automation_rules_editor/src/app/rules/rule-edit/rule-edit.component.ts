@@ -22,6 +22,7 @@ export class RuleEditComponent implements OnInit {
   ruleDesc = "";
   ruleData: Rule;
   chosenConditions: Condition[] = [];
+  conditionsStringArray: String[] = [];
   chosenActions: Action[] = [];
   chosenConditionsMap = new Map<String, Condition[]>();
   conditionsRootNode: ConditionNode = new ConditionNode([], []);
@@ -146,10 +147,6 @@ export class RuleEditComponent implements OnInit {
       this.chosenConditionsMap.set("Block6", []);
       this.chosenConditionsMap.set("Block7", []);
 
-      console.log(this.conditionsRootNode);
-      console.log(this.getGridAreasNode(this.conditionsRootNode));
-      console.log(this.getGridAreasChildren(this.conditionsRootNode));
-
     }
 
     this.signupForm = new FormGroup({
@@ -159,6 +156,7 @@ export class RuleEditComponent implements OnInit {
   }
 
   parseConditions (conditionData: any[], conditionNode: ConditionNode): ConditionNode {
+    if(conditionData.length > 0) {
       if((conditionData[0] != "OR") && (conditionData[0] != "AND")) {
         let condition = new Condition(1, conditionData[0][0], conditionData[0][1], conditionData[0][2], true);
         conditionNode.addCondition(condition);
@@ -180,7 +178,31 @@ export class RuleEditComponent implements OnInit {
           }
         }
       }
+    }
     return conditionNode;
+  }
+
+  saveConditions(conditionNode: ConditionNode) {
+    let array:any[] = [];
+    if(conditionNode.conditions.length == 1 && conditionNode.children.length == 0) {
+      array.push(conditionNode.conditions[0].getStringRepresentation());
+    }
+    else {
+      if (conditionNode.conditions.length > 0) {
+        array.push("AND");
+      for (let i = 0; i < conditionNode.conditions.length; i++) {
+        array.push(conditionNode.conditions[i].getStringRepresentation());
+      }
+      }
+      
+      if(conditionNode.children.length > 0) {
+        array.push("OR");
+        for (let i = 0; i < conditionNode.children.length; i++) {
+          array.push(this.saveConditions(conditionNode.children[i]));
+        }
+      }
+    }
+    return array;
   }
 
   saveAndBack() {
@@ -199,10 +221,15 @@ export class RuleEditComponent implements OnInit {
     this.chosenActions.forEach(a => {
       this.ruleData.actions.push([a.name, a.params]);
     })
+
+    this.conditionsStringArray = this.saveConditions(this.conditionsRootNode);
+    console.log(this.conditionsStringArray);
+    this.ruleData.conditions = this.conditionsStringArray;
     
     this.ruleData.name = (<HTMLInputElement>document.getElementById("ruleName")).value;
     this.ruleData.desc = (<HTMLInputElement>document.getElementById("ruleDesc")).value;
     console.log(this.ruleData);
+    
     this.rulesService.saveRule(this.ruleIndex, this.ruleData, this.isNewRule);
     this.onBacktoRuleList();
   }

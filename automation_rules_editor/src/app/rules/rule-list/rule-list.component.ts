@@ -26,4 +26,8 @@ export class RuleListComponent implements OnInit {
     this.rulesService.setIsNewRuleStatus(true); 
     this.router.navigate(['new'],{relativeTo: this.route});
   }
+
+  saveRules(){
+    this.rulesService.sendRulesToServer();
+  }
 }
