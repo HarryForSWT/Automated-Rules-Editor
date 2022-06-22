@@ -24,7 +24,6 @@ export class RuleEditComponent implements OnInit {
   chosenConditions: Condition[] = [];
   conditionsStringArray: String[] = [];
   chosenActions: Action[] = [];
-  chosenConditionsMap = new Map<String, Condition[]>();
   conditionsRootNode: ConditionNode = new ConditionNode([], []);
   deletedConditions: Condition[] = [];
   deletedActions: Action[] = [];
@@ -48,6 +47,39 @@ export class RuleEditComponent implements OnInit {
     new Action(3, 'addAttribute', [], false),
     new Action(4, 'setRegex', [], false)
   ];
+
+  ngOnInit(): void {
+    this.route.params
+      .subscribe(
+        (params: Params) =>{
+          this.ruleIndex= +params['id'];
+        }
+      );
+    this.isNewRule = this.rulesService.getIsNewRule();
+
+    if(!this.isNewRule) {
+      this.ruleData = this.rulesService.getRuleItem(this.ruleIndex);
+      this.tags = this.ruleData.categories;
+      this.ruleName = this.ruleData.name;
+      this.ruleDesc = this.ruleData.desc;
+
+      // Get chosen action from ruleData
+      this.ruleData.actions.forEach(a => {
+        let action = new Action(0, a[0], a[1], true);
+        this.chosenActions.push(action);
+      })
+
+      this.conditionsRootNode = this.parseConditions(this.ruleData.conditions, this.conditionsRootNode);
+
+      console.log(this.conditionsRootNode);
+
+    }
+
+    this.signupForm = new FormGroup({
+      'ruleName' : new FormControl(null),
+      'tags': new FormArray([])
+    });
+  }
 
   //chosenActions = [new Action(1, 'Change Value', ['revenue', '=', '5000'], true)];
 
@@ -116,44 +148,7 @@ export class RuleEditComponent implements OnInit {
   title: string;
   isNewRule: boolean;
 
-  ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) =>{
-          this.ruleIndex= +params['id'];
-        }
-      );
-    this.isNewRule = this.rulesService.getIsNewRule();
-
-    if(!this.isNewRule) {
-      this.ruleData = this.rulesService.getRuleItem(this.ruleIndex);
-      this.tags = this.ruleData.categories;
-      this.ruleName = this.ruleData.name;
-      this.ruleDesc = this.ruleData.desc;
-
-      // Get chosen action from ruleData
-      this.ruleData.actions.forEach(a => {
-        let action = new Action(0, a[0], a[1], true);
-        this.chosenActions.push(action);
-      })
-
-      this.conditionsRootNode = this.parseConditions(this.ruleData.conditions, this.conditionsRootNode);
-
-      this.chosenConditionsMap.set("Block1", [new Condition(0, "existence", false, [], true), new Condition(2, "regex", false, [], true)]);
-      this.chosenConditionsMap.set("Block2", [new Condition(5, "prefix", false, [], true)]);
-      this.chosenConditionsMap.set("Block3", []);
-      this.chosenConditionsMap.set("Block4", []);
-      this.chosenConditionsMap.set("Block5", [new Condition(5, "checkContains", false, [], true)]);
-      this.chosenConditionsMap.set("Block6", []);
-      this.chosenConditionsMap.set("Block7", []);
-
-    }
-
-    this.signupForm = new FormGroup({
-      'ruleName' : new FormControl(null),
-      'tags': new FormArray([])
-    });
-  }
+  
 
   parseConditions (conditionData: any[], conditionNode: ConditionNode): ConditionNode {
     if(conditionData.length > 0) {
@@ -174,7 +169,11 @@ export class RuleEditComponent implements OnInit {
         }
         if (conditionData[0] == "OR") {
           for (let i = 1; i < conditionData.length; i++) {
-            conditionNode.addChild(this.parseConditions(conditionData[i], new ConditionNode([], [])));
+            if(conditionData[i][0] == "AND") {
+              conditionNode.addChild(this.parseConditions(conditionData[i], new ConditionNode([], [])));
+            } else {
+              conditionNode.addChild(this.parseConditions([conditionData[i]], new ConditionNode([], [])));
+            }
           }
         }
       }
